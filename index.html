@@ -1,126 +1,343 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fahad Naveed | Audit & Finance Professional</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Fahad Naveed - CAF Qualified | Audit & FinTech</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Tailwind gray-50 */
+            color: #1e293b; /* Tailwind slate-800 */
+        }
+        
+        /* --- Animated Background --- */
+        #bg-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -10;
+            overflow: hidden;
+        }
+        
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+            filter: blur(60px);
+        }
+        
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            background-color: #3b82f6; /* blue-500 */
+            top: -10%;
+            left: -10%;
+            animation: move1 30s infinite alternate ease-in-out;
+        }
+        
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background-color: #10b981; /* emerald-500 */
+            bottom: -10%;
+            right: -10%;
+            animation: move2 25s infinite alternate ease-in-out;
+        }
+        
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            background-color: #a855f7; /* purple-500 */
+            top: 50%;
+            left: 40%;
+            animation: move3 35s infinite alternate ease-in-out;
+        }
+        
+        @keyframes move1 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(150px, 200px) rotate(45deg); }
+        }
+        @keyframes move2 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-100px, -150px) rotate(-30deg); }
+        }
+        @keyframes move3 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, -100px) rotate(90deg); }
+        }
+        
+        /* Fix for sticky header overlap on scroll-to-id */
+        #about, #education, #experience, #skills, #contact {
+            scroll-margin-top: 5rem;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
 </head>
-<body>
+<body class="relative">
 
-    <header>
-        <nav>
-            <div class="logo">Fahad Naveed</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+    <div id="bg-wrap">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+    </div>
+
+    <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold text-slate-900">
+                Fahad Naveed
+            </a>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-slate-600 hover:text-blue-600 transition duration-300">About</a>
+                <a href="#experience" class="text-slate-600 hover:text-blue-600 transition duration-300">Experience</a>
+                <a href="#education" class="text-slate-600 hover:text-blue-600 transition duration-300">Education</a>
+                <a href="#skills" class="text-slate-600 hover:text-blue-600 transition duration-300">Skills</a>
+                <a href="#contact" class="text-slate-600 hover:text-blue-600 transition duration-300">Contact</a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400">
+                <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </nav>
+        
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg absolute top-16 left-0 w-full z-40">
+            <a href="#about" class="block px-6 py-3 text-slate-600 hover:bg-slate-100 transition duration-300 mobile-link">About</a>
+            <a href="#experience" class="block px-6 py-3 text-slate-600 hover:bg-slate-100 transition duration-300 mobile-link">Experience</a>
+            <a href="#education" class="block px-6 py-3 text-slate-600 hover:bg-slate-100 transition duration-300 mobile-link">Education</a>
+            <a href="#skills" class="block px-6 py-3 text-slate-600 hover:bg-slate-100 transition duration-300 mobile-link">Skills</a>
+            <a href="#contact" class="block px-6 py-3 text-slate-600 hover:bg-slate-100 transition duration-300 mobile-link">Contact</a>
+        </div>
     </header>
 
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h1>Fahad Naveed</h1>
-                <p>I am a <span class="typed-text"></span></p>
-                <div class="hero-buttons">
-                    <a href="Fahad_Naveed_Resume.pdf" class="btn" download>Download Resume</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="hero" class="py-20 md:py-32 grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-8 items-center">
+            
+            <div class="md:col-span-2 flex justify-center">
+                <img 
+                    src="https://placehold.co/300x300/e2e8f0/64748b?text=Fahad" 
+                    alt="Profile picture of Fahad Naveed" 
+                    class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-8 border-white shadow-xl"
+                >
+            </div>
+            
+            <div class="md:col-span-3 text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Fahad Naveed</h1>
+                <p class="text-xl md:text-2xl text-blue-600 font-medium">Ex-Audit Intern | CAF Qualified | FinTech Student</p>
+                <p class="text-lg text-slate-600 mt-6 max-w-2xl mx-auto md:mx-0">
+                    CAF qualified student from ICAP with hands-on audit experience at M. Almas & Co. Skilled in Excel, Power BI, and Power Query, I enjoy turning data into insights and solving real business problems.
+                </p>
+                <a href="#contact" class="mt-8 inline-block bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:-translate-y-1">
+                    Let's Connect
+                </a>
+            </div>
+        </section>
+
+        <div class="space-y-20 md:space-y-28">
+
+            <section id="about" class="py-16 bg-white/70 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden">
+                <div class="px-6 md:px-12 max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-4">About Me</h2>
+                    <p class="text-slate-600 leading-relaxed mb-4 text-left md:text-center">
+                        I am a CAF qualified student from ICAP. I recently completed my role as an Audit Intern at M. Almas & Co., where I was part of the audit team engaged in the statutory audit of a listed company in Pakistan.
+                    </p>
+                    <p class="text-slate-600 leading-relaxed mb-4 text-left md:text-center">
+                        My interest in finance, strategy, and history shapes a broad and analytical perspective. I have built hands-on experience in auditing and financial analysis and am always open to learning and meaningful connections.
+                    </p>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="about" class="scroll-section">
-            <h2>About Me</h2>
-            <div class="about-container">
-                <p>
-                    [cite_start]I am a CAF qualified student from ICAP. [cite: 17] [cite_start]I recently completed my role as an Audit Intern at M. Almas & Co., where I was part of the audit team engaged in the statutory audit of a listed company in Pakistan. [cite: 17] [cite_start]I built hands-on experience in auditing and financial analysis. [cite: 18]
-                </p>
-                <p>
-                    [cite_start]Skilled in Excel, Power BI, and Power Query, I enjoy turning data into insights and solving real business problems. [cite: 19] [cite_start]My interest in finance, strategy, and history shapes a broad and analytical perspective. [cite: 20] [cite_start]Always open to learning and meaningful connections. [cite: 21]
-                </p>
-            </div>
-        </section>
+            <section id="experience" class="py-16">
+                <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Professional Experience</h2>
+                
+                <div class="space-y-8 max-w-4xl mx-auto">
+                    
+                    <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50">
+                        <h3 class="text-2xl font-semibold text-slate-900">Founder</h3>
+                        <p class="text-lg text-blue-600 font-medium mb-3">Global Financials (April 2025 - Present)</p>
+                        <p class="text-slate-600 leading-relaxed">
+                            Leading initiatives in the financial sector.
+                        </p>
+                    </div>
 
-        <section id="experience" class="scroll-section">
-            <h2>Work Experience</h2>
-            <div class="experience-item">
-                <h3>Audit Intern</h3>
-                <p class="experience-details">
-                    <strong>M. Almas & Co. Chartered Accountants</strong> | [cite_start]Lahore, Punjab, Pakistan [cite: 23, 26]
-                </p>
-                [cite_start]<p class="experience-date">June 2025 - October 2025 (5 months) [cite: 25]</p>
-                <ul>
-                    [cite_start]<li>Conducted stock take assignments for retail and industrial clients, ensuring accurate valuation and year-end reporting. [cite: 28]</li>
-                    [cite_start]<li>Assisted in the statutory audit of Leiner Pak Gelatin Limited, updating records, verifying relations, and ensuring compliance. [cite: 29]</li>
-                    [cite_start]<li>Reviewed and maintained audit working papers in Smart Audit Software for accuracy and completeness. [cite: 30]</li>
-                    [cite_start]<li>Prepared computations for overdraft markup, analyzed sales variances, and evaluated related-party transactions. [cite: 32]</li>
-                    [cite_start]<li>Performed analytical procedures on year-over-year variances to provide insights into unusual movements. [cite: 33]</li>
-                    [cite_start]<li>Prepared annual sales tax reconciliations and updated withholding tax records for exports. [cite: 35]</li>
-                </ul>
-            </div>
-        </section>
+                    <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50">
+                        <h3 class="text-2xl font-semibold text-slate-900">Audit Intern</h3>
+                        <p class="text-lg text-blue-600 font-medium mb-3">M. Almas & Co. Chartered Accountants (June 2025 - Oct 2025)</p>
+                        
+                        <ul class="list-disc list-inside space-y-3 text-slate-700 mt-4">
+                            <li>
+                                <strong>Stock Take Assignments:</strong> Conducted inventory counts for One Life Apparel (Emporium Mall) and EZY Mix Industries (Muridke factory), ensuring accurate valuation and reliable year-end reporting.
+                            </li>
+                            <li>
+                                <strong>Statutory Audit:</strong> Assisted in the audit of Leiner Pak Gelatin Limited by updating governance records, verifying key relations, and preparing lease liability schedules.
+                            </li>
+                            <li>
+                                <strong>Smart Audit Software:</strong> Reviewed and maintained audit working papers to ensure accuracy, completeness, and alignment with final accounts.
+                            </li>
+                            <li>
+                                <strong>Financial Analysis:</strong> Prepared computations for overdraft markup using KIBOR rates and analyzed sales by product, geography, and customer.
+                            </li>
+                            <li>
+                                <strong>Variance Analysis:</strong> Performed analytical procedures on year-over-year variances to provide insights into unusual movements.
+                            </li>
+                            <li>
+                                <strong>Confirmations:</strong> Drafted and tested bank, debtor, and creditor confirmations using systematic sampling techniques.
+                            </li>
+                            <li>
+                                <strong>Tax Reconciliations:</strong> Prepared annual sales tax reconciliations and applied pivot-based checks on input/output tax accuracy.
+                            </li>
+                        </ul>
+                    </div>
 
-        <section id="skills" class="scroll-section">
-            <h2>Skills & Certifications</h2>
-            <h3>Top Skills</h3>
-            <div class="skills-container">
-                [cite_start]<span class="skill-tag">External Audits [cite: 6]</span>
-                [cite_start]<span class="skill-tag">Smart Audit Software [cite: 7]</span>
-                [cite_start]<span class="skill-tag">Financial Variance Analysis [cite: 8]</span>
-                [cite_start]<span class="skill-tag">Microsoft Excel [cite: 19]</span>
-                [cite_start]<span class="skill-tag">Power BI [cite: 19]</span>
-                [cite_start]<span class="skill-tag">Power Query [cite: 19]</span>
-            </div>
-            <h3>Certifications</h3>
-            <div class="certifications-container">
-                [cite_start]<div class="cert-item">MS Office [cite: 10]</div>
-                [cite_start]<div class="cert-item">Insight into Practical Audit Presentation and Personal Effectiveness [cite: 11]</div>
-                [cite_start]<div class="cert-item">AI For Everyone [cite: 12]</div>
-                [cite_start]<div class="cert-item">Master Power Query [cite: 13]</div>
-            </div>
-        </section>
+                </div>
+            </section>
 
-        <section id="education" class="scroll-section">
-            <h2>Education</h2>
-            <div class="education-item">
-                [cite_start]<h3>The Institute of Chartered Accountants of Pakistan [cite: 37]</h3>
-                [cite_start]<p>Chartered Accountancy (2023 - 2028) [cite: 38]</p>
-            </div>
-            <div class="education-item">
-                [cite_start]<h3>Government College of Commerce Gujrat [cite: 39]</h3>
-                [cite_start]<p>Intermediate in Commerce, Commerce (2021-2023) [cite: 40]</p>
-            </div>
-            <div class="education-item">
-                [cite_start]<h3>Allied School JPJ Campus [cite: 41]</h3>
-                [cite_start]<p>Matric, Computer Science (2019-2021) [cite: 42]</p>
-            </div>
-        </section>
+            <section id="education" class="py-16">
+                <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Education & Certifications</h2>
+                <div class="max-w-4xl mx-auto space-y-6">
+                    
+                    <div class="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md border border-slate-200/50 flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">BS Financial Technology (FinTech)</h3>
+                            <p class="text-slate-600">National College Of Business Administration & Economics</p>
+                        </div>
+                        <span class="mt-2 md:mt-0 bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Feb 2026 - Feb 2028</span>
+                    </div>
 
-        <section id="contact" class="scroll-section">
-            <h2>Get In Touch</h2>
-            <p>I'm always open to discussing new opportunities and challenges. Feel free to reach out!</p>
-            <div class="contact-info">
-                [cite_start]<a href="mailto:fahad.naveedca@gmail.com"><i class="fas fa-envelope"></i> fahad.naveedca@gmail.com [cite: 2]</a>
-                [cite_start]<a href="tel:03230731517"><i class="fas fa-phone"></i> 03230731517 [cite: 2]</a>
-                [cite_start]<a href="https://www.linkedin.com/in/fahaad-ca" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn Profile [cite: 3]</a>
-            </div>
-        </section>
+                    <div class="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md border border-slate-200/50 flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Chartered Accountancy</h3>
+                            <p class="text-slate-600">The Institute of Chartered Accountants of Pakistan (ICAP)</p>
+                        </div>
+                        <span class="mt-2 md:mt-0 bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">2023 - 2028</span>
+                    </div>
+
+                    <div class="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md border border-slate-200/50 flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Intermediate, Commerce</h3>
+                            <p class="text-slate-600">Government College of Commerce Gujrat</p>
+                        </div>
+                        <span class="mt-2 md:mt-0 bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full">2021 - 2023</span>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="skills" class="py-16">
+                <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Skills & Certifications</h2>
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50">
+                        <h3 class="text-2xl font-semibold text-slate-900 mb-4 text-center">Technical Skills</h3>
+                        <div class="flex flex-wrap gap-3 justify-center">
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full">External Audits</span>
+                            <span class="bg-emerald-100 text-emerald-800 text-sm font-medium px-4 py-2 rounded-full">Smart Audit Software</span>
+                            <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full">Financial Variance Analysis</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-4 py-2 rounded-full">Power BI</span>
+                            <span class="bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full">Power Query</span>
+                            <span class="bg-slate-100 text-slate-800 text-sm font-medium px-4 py-2 rounded-full">MS Office</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50">
+                        <h3 class="text-2xl font-semibold text-slate-900 mb-4 text-center">Certifications & Soft Skills</h3>
+                        <div class="flex flex-wrap gap-3 justify-center">
+                            <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-4 py-2 rounded-full">AI For Everyone</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-4 py-2 rounded-full">Master Power Query</span>
+                            <span class="bg-slate-100 text-slate-800 text-sm font-medium px-4 py-2 rounded-full">Practical Audit Insight</span>
+                            <span class="bg-slate-100 text-slate-800 text-sm font-medium px-4 py-2 rounded-full">Presentation Skills</span>
+                            <span class="bg-slate-100 text-slate-800 text-sm font-medium px-4 py-2 rounded-full">Personal Effectiveness</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="contact" class="py-16">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-4">Let's Connect</h2>
+                    <p class="text-lg text-slate-600 mb-8 max-w-lg mx-auto">
+                        I am based in Lahore, Punjab, and always open to learning and meaningful connections.
+                    </p>
+                    <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+                        <a href="mailto:fahad.naveedca@gmail.com" class="bg-white/70 backdrop-blur-md px-8 py-4 rounded-lg shadow-lg border border-slate-200/50 text-slate-700 font-medium hover:bg-slate-50 transition duration-300 w-full md:w-auto">
+                            <span class="font-semibold block text-sm text-slate-500">Email</span>
+                            fahad.naveedca@gmail.com
+                        </a>
+                        <a href="https://www.linkedin.com/in/fahaad-ca" target="_blank" class="bg-white/70 backdrop-blur-md px-8 py-4 rounded-lg shadow-lg border border-slate-200/50 text-slate-700 font-medium hover:bg-slate-50 transition duration-300 w-full md:w-auto">
+                            <span class="font-semibold block text-sm text-slate-500">LinkedIn</span>
+                            /in/fahaad-ca
+                        </a>
+                        <a href="tel:03230731517" class="bg-white/70 backdrop-blur-md px-8 py-4 rounded-lg shadow-lg border border-slate-200/50 text-slate-700 font-medium hover:bg-slate-50 transition duration-300 w-full md:w-auto">
+                            <span class="font-semibold block text-sm text-slate-500">Phone</span>
+                            0323 0731517
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </div> 
     </main>
 
-    <footer>
-        <p>&copy; 2025 Fahad Naveed. All Rights Reserved.</p>
+    <footer class="bg-slate-800 text-slate-300 mt-20">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; <span id="current-year"></span> Fahad Naveed. All rights reserved.</p>
+            <p class="text-sm text-slate-400 mt-2">Designed for a professional future.</p>
+        </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            
+            // Toggle mobile menu
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Hide mobile menu after clicking a link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Set current year in footer
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
 
 </body>
 </html>
