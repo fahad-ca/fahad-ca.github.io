@@ -96,6 +96,19 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #64748b;
         }
+
+        /* Modal Styles */
+        #image-modal {
+            transition: opacity 0.3s ease;
+        }
+        #image-modal.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #image-modal:not(.hidden) {
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body class="relative">
@@ -246,7 +259,7 @@
             </section>
 
             <section id="education" class="py-16">
-                <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Education & Certifications</h2>
+                <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Education & Qualifications</h2>
                 <div class="max-w-4xl mx-auto space-y-6">
                     
                     <div class="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md border border-slate-200/50 flex flex-col md:flex-row justify-between items-start md:items-center">
@@ -315,23 +328,88 @@
                     <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50">
                         <h3 class="text-2xl font-semibold text-slate-900 mb-4 text-center">Technical Skills</h3>
                         <div class="flex flex-wrap gap-3 justify-center">
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full">External Audits</span>
-                            <span class="bg-emerald-100 text-emerald-800 text-sm font-medium px-4 py-2 rounded-full">Smart Audit Software</span>
-                            <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full">Financial Variance Analysis</span>
-                            <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-4 py-2 rounded-full">Power BI</span>
-                            <span class="bg-green-100 text-green-800 text-sm font-medium px-4 py-2 rounded-full">Power Query</span>
-                            <span class="bg-slate-100 text-slate-800 text-sm font-medium px-4 py-2 rounded-full">MS Office</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">External Audits</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Smart Audit Software</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Financial Variance Analysis</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Power BI</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Power Query</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Data Analysis & Visualization</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">MS Office</span>
                         </div>
                     </div>
                     
                     <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50">
-                        <h3 class="text-2xl font-semibold text-slate-900 mb-4 text-center">Certifications & Soft Skills</h3>
+                        <h3 class="text-2xl font-semibold text-slate-900 mb-4 text-center">Soft Skills</h3>
                         <div class="flex flex-wrap gap-3 justify-center">
-                            <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-4 py-2 rounded-full">AI For Everyone</span>
-                            <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-4 py-2 rounded-full">Master Power Query</span>
-                            <span class="bg-slate-100 text-slate-800 text-sm font-medium px-4 py-2 rounded-full">Practical Audit Insight</span>
-                            <span class="bg-slate-100 text-slate-800 text-sm font-medium px-4 py-2 rounded-full">Presentation Skills</span>
-                            <span class="bg-slate-100 text-slate-800 text-sm font-medium px-4 py-2 rounded-full">Personal Effectiveness</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Teamwork</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Adaptability</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Analytical Thinking</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Client Communication</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Entrepreneurial Initiative</span>
+                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Intellectual Curiosity</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50 md:col-span-2">
+                        <h3 class="text-2xl font-semibold text-slate-900 mb-6 text-center">Certifications & Training</h3>
+                        <p class="text-center text-sm text-slate-500 mb-6 italic">(Click on a certification to view the certificate)</p>
+                        <div class="flex flex-wrap gap-3 justify-center">
+                            
+                            <span onclick="openModal('public/certifications/Quickbooks Certificate.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                QuickBooks
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/Freelancing Certificate.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                Freelancing
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/Sustainability.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                Intro to IFRS Sustainability Disclosure Standards
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/AI.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                AI For Everyone
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/Reading Fs.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                Reading Financial Statements
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/BI.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                Insight into Power BI
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/Query.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                Master Power Query
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/Disc.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                DFS - Professional Skills Job Simulation
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/Excel.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                Insight into Advanced Excel
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/Audit.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                Insight into Practical Audit
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/Pwc.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                PwC US - Audit Job Simulation
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/Kpmg.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                KPMG U.S. - Audit Job Simulation
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/PPE.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                Presentation and Personal Effectiveness
+                            </span>
+                            
+                            <span onclick="openModal('public/certifications/MS.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
+                                MS Office
+                            </span>
                         </div>
                     </div>
 
@@ -371,6 +449,17 @@
         </div>
     </footer>
 
+    <div id="image-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 hidden p-4" onclick="closeModal()">
+        <div class="relative max-w-4xl max-h-[90vh] w-full flex items-center justify-center">
+            <img id="modal-img" src="" alt="Certificate" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuBtn = document.getElementById('mobile-menu-btn');
@@ -393,6 +482,33 @@
             const yearSpan = document.getElementById('current-year');
             if (yearSpan) {
                 yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+
+        // Modal Functions
+        function openModal(imageSrc) {
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-img');
+            modalImg.src = imageSrc;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Clear src after fade out to prevent flashing old image next open
+            setTimeout(() => {
+                document.getElementById('modal-img').src = '';
+            }, 300);
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
             }
         });
     </script>
