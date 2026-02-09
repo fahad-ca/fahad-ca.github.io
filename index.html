@@ -3,234 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fahad Naveed - CA Finals | BS FinTech</title>
+    <title>Fahad Naveed - CA Finalist | BS FinTech</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#1e293b', // Slate 800
+                            900: '#0f172a', // Slate 900 (Deep Navy)
+                            950: '#020617', 
+                        },
+                        royal: {
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6', // Bright Blue
+                            600: '#2563eb',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     
     <style>
-        /* Base font */
+        /* Base styles */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Tailwind gray-50 */
-            color: #1e293b; /* Tailwind slate-800 */
+            background-color: #0f172a; 
+            color: #e2e8f0;
         }
         
-        /* --- Animated Background --- */
-        #bg-wrap {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -10;
-            overflow: hidden;
-        }
-        
-        .bg-shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.15;
-            filter: blur(60px);
-        }
-        
-        .shape-1 {
-            width: 500px;
-            height: 500px;
-            background-color: #3b82f6; /* blue-500 */
-            top: -10%;
-            left: -10%;
-            animation: move1 30s infinite alternate ease-in-out;
-        }
-        
-        .shape-2 {
-            width: 400px;
-            height: 400px;
-            background-color: #10b981; /* emerald-500 */
-            bottom: -10%;
-            right: -10%;
-            animation: move2 25s infinite alternate ease-in-out;
-        }
-        
-        .shape-3 {
-            width: 300px;
-            height: 300px;
-            background-color: #a855f7; /* purple-500 */
-            top: 50%;
-            left: 40%;
-            animation: move3 35s infinite alternate ease-in-out;
-        }
-        
-        @keyframes move1 {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(150px, 200px) rotate(45deg); }
-        }
-        @keyframes move2 {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(-100px, -150px) rotate(-30deg); }
-        }
-        @keyframes move3 {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(100px, -100px) rotate(90deg); }
-        }
-        
-        /* Fix for sticky header overlap on scroll-to-id */
-        #about, #education, #experience, #skills, #contact {
-            scroll-margin-top: 5rem;
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #94a3b8;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
+        /* Matte & Glassy Background Texture */
+        .bg-glassy-navy {
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%), 
+                radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08), transparent 25%);
+            background-color: #0f172a;
         }
 
-        /* Modal Styles */
+        /* Dark Glass Card Style */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6); /* Semi-transparent dark slate */
+            backdrop-filter: blur(16px);        /* Blur effect */
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle white border */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* Soft shadow */
+        }
+
+        .glass-footer {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Scroll Offset for Sticky Header */
+        section {
+            scroll-margin-top: 7rem;
+        }
+
+        .no-scroll {
+            overflow: hidden;
+        }
+
         #image-modal {
-            transition: opacity 0.3s ease;
-        }
-        #image-modal.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        #image-modal:not(.hidden) {
-            opacity: 1;
-            pointer-events: auto;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
     </style>
 </head>
-<body class="relative">
+<body class="relative antialiased selection:bg-royal-500 selection:text-white bg-glassy-navy">
 
-    <div id="bg-wrap">
-        <div class="bg-shape shape-1"></div>
-        <div class="bg-shape shape-2"></div>
-        <div class="bg-shape shape-3"></div>
-    </div>
-
-    <header class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-navy-950/80 backdrop-blur-md shadow-lg border-b border-white/5">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold text-slate-900">
+            
+            <a href="#hero" class="text-xl md:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <img 
+                    src="public/Fahad_Naveed_Picture_PhotoGrid.png" 
+                    alt="Fahad" 
+                    class="w-10 h-10 rounded-full object-cover object-top border-2 border-royal-500 shadow-md"
+                >
                 Fahad Naveed
             </a>
             
-            <div class="hidden md:flex space-x-6">
-                <a href="#about" class="text-slate-600 hover:text-blue-600 transition duration-300">About</a>
-                <a href="#experience" class="text-slate-600 hover:text-blue-600 transition duration-300">Experience</a>
-                <a href="#education" class="text-slate-600 hover:text-blue-600 transition duration-300">Education</a>
-                <a href="#skills" class="text-slate-600 hover:text-blue-600 transition duration-300">Skills</a>
-                <a href="#contact" class="text-slate-600 hover:text-blue-600 transition duration-300">Contact</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-slate-300 hover:text-white text-sm font-medium transition duration-300 hover:scale-105">About</a>
+                <a href="#experience" class="text-slate-300 hover:text-white text-sm font-medium transition duration-300 hover:scale-105">Experience</a>
+                <a href="#education" class="text-slate-300 hover:text-white text-sm font-medium transition duration-300 hover:scale-105">Education</a>
+                <a href="#skills" class="text-slate-300 hover:text-white text-sm font-medium transition duration-300 hover:scale-105">Skills</a>
+                <a href="#contact" class="px-5 py-2 bg-royal-500 text-white text-sm font-semibold rounded-full hover:bg-royal-600 transition shadow-lg shadow-royal-500/30">Let's Connect</a>
             </div>
             
-            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400">
-                <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </nav>
         
-        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg absolute top-16 left-0 w-full z-40">
-            <a href="#about" class="block px-6 py-3 text-slate-600 hover:bg-slate-100 transition duration-300 mobile-link">About</a>
-            <a href="#experience" class="block px-6 py-3 text-slate-600 hover:bg-slate-100 transition duration-300 mobile-link">Experience</a>
-            <a href="#education" class="block px-6 py-3 text-slate-600 hover:bg-slate-100 transition duration-300 mobile-link">Education</a>
-            <a href="#skills" class="block px-6 py-3 text-slate-600 hover:bg-slate-100 transition duration-300 mobile-link">Skills</a>
-            <a href="#contact" class="block px-6 py-3 text-slate-600 hover:bg-slate-100 transition duration-300 mobile-link">Contact</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-navy-900 border-t border-white/10 absolute w-full z-40">
+            <a href="#about" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link">About</a>
+            <a href="#experience" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link">Experience</a>
+            <a href="#education" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link">Education</a>
+            <a href="#skills" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link">Skills</a>
+            <a href="#contact" class="block px-6 py-4 text-royal-400 font-semibold hover:bg-white/5 mobile-link">Contact</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-12">
+    <main class="container mx-auto px-6 pt-32 pb-12">
 
-        <section id="hero" class="py-20 md:py-32 grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-8 items-center">
+        <section id="hero" class="min-h-[80vh] flex flex-col md:flex-row items-center justify-center md:justify-between gap-12 mb-20">
             
-            <div class="md:col-span-2 flex justify-center">
-                <img 
-                    src="public/Fahad_Naveed_Picture_PhotoGrid.png" 
-                    alt="Profile picture of Fahad Naveed" 
-                    class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover object-top border-8 border-white shadow-xl"
-                >
+            <div class="md:w-1/2 flex justify-center md:justify-start relative">
+                <div class="absolute w-72 h-72 bg-royal-500/20 rounded-full blur-3xl -z-10 top-10 left-10"></div>
+                <div class="relative">
+                    <img 
+                        src="public/Fahad_Naveed_Picture_PhotoGrid.png" 
+                        alt="Fahad Naveed" 
+                        class="relative rounded-full w-64 h-64 md:w-80 md:h-80 object-cover object-top border-4 border-navy-800 ring-4 ring-royal-500/50 shadow-2xl"
+                    >
+                </div>
             </div>
-            
-            <div class="md:col-span-3 text-center md:text-left">
-                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Fahad Naveed</h1>
-                <p class="text-xl md:text-2xl text-blue-600 font-medium">Ex-Audit Intern | CA Finals | ICAP | BS FinTech</p>
-                <p class="text-lg text-slate-600 mt-6 max-w-2xl mx-auto md:mx-0">
+
+            <div class="md:w-1/2 text-center md:text-left space-y-6">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight whitespace-nowrap">
+                    Fahad Naveed
+                </h1>
+                
+                <p class="text-lg md:text-xl lg:text-2xl text-royal-400 font-medium whitespace-normal md:whitespace-nowrap">
+                    Ex-Audit Intern | CA Finalist | ICAP | BS FinTech
+                </p>
+                
+                <p class="text-lg text-slate-400 max-w-lg mx-auto md:mx-0 leading-relaxed">
                     CAF qualified student from ICAP with hands-on audit experience at M. Almas & Co. Skilled in Excel, Power BI, and Power Query, I enjoy turning data into insights and solving real business problems.
                 </p>
-                <a href="#contact" class="mt-8 inline-block bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:-translate-y-1">
-                    Let's Connect
-                </a>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+                    <a href="#contact" class="px-8 py-3.5 bg-royal-600 text-white font-semibold rounded-xl hover:bg-royal-500 transition shadow-xl shadow-royal-600/20 transform hover:-translate-y-1">
+                        Let's Connect
+                    </a>
+                </div>
+            </div>
+            
+        </section>
+
+        <section id="about" class="py-16">
+            <div class="glass-card rounded-2xl p-8 md:p-12 shadow-xl max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-white mb-6">About Me</h2>
+                <p class="text-slate-300 leading-relaxed mb-4 text-left md:text-center text-lg">
+                    I am a CAF qualified student from ICAP. I recently completed my role as an Audit Intern at M. Almas & Co., where I was part of the audit team engaged in the statutory audit of a listed company in Pakistan.
+                </p>
+                <p class="text-slate-300 leading-relaxed text-left md:text-center text-lg">
+                    My interest in finance, strategy, and history shapes a broad and analytical perspective. I have built hands-on experience in auditing and financial analysis and am always open to learning and meaningful connections.
+                </p>
             </div>
         </section>
 
-        <div class="space-y-20 md:space-y-28">
-
-            <section id="about" class="py-16 bg-white/70 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden">
-                <div class="px-6 md:px-12 max-w-4xl mx-auto text-center">
-                    <h2 class="text-3xl font-bold text-slate-800 mb-4">About Me</h2>
-                    <p class="text-slate-600 leading-relaxed mb-4 text-left md:text-center">
-                        I am a CAF qualified student from ICAP. I recently completed my role as an Audit Intern at M. Almas & Co., where I was part of the audit team engaged in the statutory audit of a listed company in Pakistan.
-                    </p>
-                    <p class="text-slate-600 leading-relaxed mb-4 text-left md:text-center">
-                        My interest in finance, strategy, and history shapes a broad and analytical perspective. I have built hands-on experience in auditing and financial analysis and am always open to learning and meaningful connections.
-                    </p>
-                </div>
-            </section>
-
-            <section id="experience" class="py-16">
-                <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Professional Experience</h2>
+        <section id="experience" class="py-16">
+            <div class="text-center mb-16">
+                <h2 class="text-base text-royal-400 font-semibold tracking-wide uppercase">Career Path</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    Professional Experience
+                </p>
+            </div>
+            
+            <div class="space-y-8 max-w-5xl mx-auto">
                 
-                <div class="space-y-8 max-w-4xl mx-auto">
-                    
-                    <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50">
-                        <div class="flex flex-col md:flex-row justify-between items-start mb-4">
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 flex-shrink-0 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center p-1">
-                                    <img src="public/logo2.svg" alt="Global Financials" class="w-full h-full object-contain">
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-semibold text-slate-900">Founder</h3>
-                                    <p class="text-lg text-blue-600 font-medium">Global Financials (April 2025 - Present)</p>
-                                    <p class="text-slate-500 text-sm">Remote, Worldwide</p>
+                <div class="glass-card p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-6">
+                        <div class="flex items-start gap-5">
+                            <div class="w-16 h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-2">
+                                <img src="public/logo2.svg" alt="Global Financials" class="w-full h-full object-contain">
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white">Founder</h3>
+                                <p class="text-lg text-royal-400 font-medium">Global Financials</p>
+                                <div class="flex flex-wrap gap-3 mt-1 text-sm text-slate-400">
+                                    <span>April 2025 - Present</span>
+                                    <span class="hidden md:inline">•</span>
+                                    <span>Remote, Worldwide</span>
                                 </div>
                             </div>
-                            <a href="https://globalfinancials.org" target="_blank" class="mt-4 md:mt-0 inline-flex items-center gap-2 px-4 py-2 bg-slate-50 text-slate-600 text-sm font-medium rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors border border-slate-200">
-                                <span>globalfinancials.org</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                </svg>
-                            </a>
                         </div>
+                        <a href="https://globalfinancials.org" target="_blank" class="mt-4 md:mt-0 inline-flex items-center gap-2 px-4 py-2 bg-navy-900/50 text-slate-300 text-sm font-medium rounded-lg hover:bg-royal-600 hover:text-white transition-colors border border-white/10">
+                            <span>globalfinancials.org</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </a>
+                    </div>
 
-                        <p class="text-slate-600 leading-relaxed">
+                    <div class="pl-0 md:pl-20">
+                        <p class="text-slate-300 leading-relaxed mb-4">
                             Established and currently scaling a dedicated financial services platform. Responsible for the holistic vision, from technical architecture to content strategy, ensuring the delivery of high-quality financial insights.
                         </p>
                     </div>
+                </div>
 
-                    <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50">
-                        
-                        <div class="flex items-start gap-4 mb-6">
-                            <div class="w-12 h-12 flex-shrink-0 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
+                <div class="glass-card p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-6">
+                        <div class="flex items-start gap-5">
+                            <div class="w-16 h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
                                 <img src="public/Almas.jpg" alt="M. Almas & Co." class="w-full h-full object-contain">
                             </div>
                             <div>
-                                <h3 class="text-2xl font-semibold text-slate-900">Audit Intern</h3>
-                                <p class="text-lg text-blue-600 font-medium">M. Almas & Co. Chartered Accountants (June 2025 - Oct 2025)</p>
-                                <p class="text-slate-500 text-sm">Lahore, Pakistan</p>
+                                <h3 class="text-2xl font-bold text-white">Audit Intern</h3>
+                                <p class="text-lg text-royal-400 font-medium">M. Almas & Co. Chartered Accountants</p>
+                                <div class="flex flex-wrap gap-3 mt-1 text-sm text-slate-400">
+                                    <span>June 2025 - Oct 2025</span>
+                                    <span class="hidden md:inline">•</span>
+                                    <span>Lahore, Pakistan</span>
+                                </div>
                             </div>
                         </div>
-                        
-                        <ul class="list-disc list-inside space-y-3 text-slate-700">
+                    </div>
+
+                    <div class="pl-0 md:pl-20 text-slate-300">
+                        <ul class="list-disc list-outside space-y-3 ml-4">
                             <li>
                                 <strong>Stock Take Assignments:</strong> Conducted inventory counts for One Life Apparel (Emporium Mall) and EZY Mix Industries (Muridke factory), ensuring accurate valuation and reliable year-end reporting.
                             </li>
@@ -254,204 +250,189 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
-            </section>
 
-            <section id="education" class="py-16">
-                <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Education & Qualifications</h2>
-                <div class="max-w-4xl mx-auto space-y-6">
-                    
-                    <div class="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md border border-slate-200/50 flex flex-col md:flex-row justify-between items-start md:items-center">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 flex-shrink-0 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
+            </div>
+        </section>
+
+        <section id="education" class="py-16">
+            <div class="text-center mb-16">
+                <h2 class="text-base text-royal-400 font-semibold tracking-wide uppercase">Academic Background</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    Education & Qualifications
+                </p>
+            </div>
+
+            <div class="space-y-8 max-w-5xl mx-auto">
+                
+                <div class="glass-card p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
+                    <div class="flex flex-col md:flex-row justify-between items-start">
+                        <div class="flex items-start gap-5">
+                            <div class="w-16 h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
                                 <img src="public/NCBAE.jpg" alt="NCBAE" class="w-full h-full object-contain">
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-slate-900">BS Financial Technology (FinTech)</h3>
-                                <p class="text-slate-600">National College Of Business Administration & Economics</p>
-                                <p class="text-slate-500 text-sm">Lahore, Pakistan</p>
+                                <h3 class="text-2xl font-bold text-white">BS Financial Technology</h3>
+                                <p class="text-lg text-royal-400 font-medium">National College Of Business Administration & Economics</p>
+                                <p class="text-slate-400 text-sm mt-1">Lahore, Pakistan • <span class="text-emerald-400 font-medium">5th Semester</span></p>
                             </div>
                         </div>
-                        <span class="mt-4 md:mt-0 bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Feb 2026 - Feb 2028</span>
+                        <div class="mt-4 md:mt-0">
+                            <span class="inline-block px-4 py-2 bg-royal-500/10 text-royal-300 text-sm font-semibold rounded-lg border border-royal-500/20">Feb 2026 - Present</span>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md border border-slate-200/50 flex flex-col md:flex-row justify-between items-start md:items-center">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 flex-shrink-0 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
+                <div class="glass-card p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
+                    <div class="flex flex-col md:flex-row justify-between items-start">
+                        <div class="flex items-start gap-5">
+                            <div class="w-16 h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
                                 <img src="public/ICAP.jpg" alt="ICAP" class="w-full h-full object-contain">
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-slate-900">Chartered Accountancy</h3>
-                                <p class="text-slate-600">The Institute of Chartered Accountants of Pakistan (ICAP)</p>
-                                <p class="text-slate-500 text-sm">Lahore, Pakistan</p>
+                                <h3 class="text-2xl font-bold text-white">Chartered Accountancy</h3>
+                                <p class="text-lg text-royal-400 font-medium">The Institute of Chartered Accountants of Pakistan (ICAP)</p>
+                                <p class="text-slate-400 text-sm mt-1">Lahore, Pakistan • <span class="text-emerald-400 font-medium">CA Finalist</span></p>
                             </div>
                         </div>
-                        <span class="mt-4 md:mt-0 bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">2023 - 2028</span>
+                        <div class="mt-4 md:mt-0">
+                            <span class="inline-block px-4 py-2 bg-royal-500/10 text-royal-300 text-sm font-semibold rounded-lg border border-royal-500/20">July 2023 - Present</span>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md border border-slate-200/50 flex flex-col md:flex-row justify-between items-start md:items-center">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 flex-shrink-0 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
+                <div class="glass-card p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
+                    <div class="flex flex-col md:flex-row justify-between items-start">
+                        <div class="flex items-start gap-5">
+                            <div class="w-16 h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
                                 <img src="public/GCCG.jpg" alt="GCCG" class="w-full h-full object-contain">
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-slate-900">Intermediate in Commerce</h3>
-                                <p class="text-slate-600">Govt. Graduate College Of Commerce, Gujrat</p>
-                                <p class="text-slate-500 text-sm">Gujrat, Pakistan <span class="mx-2 text-slate-300">|</span> <span class="text-emerald-600 font-medium">Grade: A</span></p>
+                                <h3 class="text-2xl font-bold text-white">Intermediate in Commerce</h3>
+                                <p class="text-lg text-royal-400 font-medium">Govt. Graduate College Of Commerce, Gujrat</p>
+                                <p class="text-slate-400 text-sm mt-1">Gujrat, Pakistan • <span class="text-emerald-400 font-medium">Grade: A</span></p>
                             </div>
                         </div>
-                        <span class="mt-4 md:mt-0 bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full">2021 - 2023</span>
+                        <div class="mt-4 md:mt-0">
+                            <span class="inline-block px-4 py-2 bg-navy-900/50 text-slate-300 text-sm font-semibold rounded-lg border border-white/10">2021 - 2023</span>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-md border border-slate-200/50 flex flex-col md:flex-row justify-between items-start md:items-center">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 flex-shrink-0 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
+                <div class="glass-card p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
+                    <div class="flex flex-col md:flex-row justify-between items-start">
+                        <div class="flex items-start gap-5">
+                            <div class="w-16 h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
                                 <img src="public/Allied School.jpg" alt="Allied School" class="w-full h-full object-contain">
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-slate-900">Matriculation in Computer Science</h3>
-                                <p class="text-slate-600">Allied School JPJ Campus</p>
-                                <p class="text-slate-500 text-sm">Jalalpur Jattan, Gujrat <span class="mx-2 text-slate-300">|</span> <span class="text-emerald-600 font-medium">Grade: A+</span></p>
+                                <h3 class="text-2xl font-bold text-white">Matriculation in Computer Science</h3>
+                                <p class="text-lg text-royal-400 font-medium">Allied School JPJ Campus</p>
+                                <p class="text-slate-400 text-sm mt-1">Jalalpur Jattan, Gujrat • <span class="text-emerald-400 font-medium">Grade: A+</span></p>
                             </div>
                         </div>
-                        <span class="mt-4 md:mt-0 bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1 rounded-full">2019 - 2021</span>
+                        <div class="mt-4 md:mt-0">
+                            <span class="inline-block px-4 py-2 bg-navy-900/50 text-slate-300 text-sm font-semibold rounded-lg border border-white/10">2019 - 2021</span>
+                        </div>
                     </div>
-
                 </div>
-            </section>
 
-            <section id="skills" class="py-16">
-                <h2 class="text-3xl font-bold text-slate-800 text-center mb-12">Skills & Certifications</h2>
-                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
-                    <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50">
-                        <h3 class="text-2xl font-semibold text-slate-900 mb-4 text-center">Technical Skills</h3>
-                        <div class="flex flex-wrap gap-3 justify-center">
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">External Audits</span>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Smart Audit Software</span>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Financial Variance Analysis</span>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Power BI</span>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Power Query</span>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Data Analysis & Visualization</span>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">MS Office</span>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50">
-                        <h3 class="text-2xl font-semibold text-slate-900 mb-4 text-center">Soft Skills</h3>
-                        <div class="flex flex-wrap gap-3 justify-center">
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Teamwork</span>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Adaptability</span>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Analytical Thinking</span>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Client Communication</span>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Entrepreneurial Initiative</span>
-                            <span class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-default">Intellectual Curiosity</span>
-                        </div>
-                    </div>
+            </div>
+        </section>
 
-                    <div class="bg-white/70 backdrop-blur-md p-8 rounded-xl shadow-lg border border-slate-200/50 md:col-span-2">
-                        <h3 class="text-2xl font-semibold text-slate-900 mb-6 text-center">Certifications & Training</h3>
-                        <p class="text-center text-sm text-slate-500 mb-6 italic">(Click on a certification to view the certificate)</p>
-                        <div class="flex flex-wrap gap-3 justify-center">
-                            
-                            <span onclick="openModal('public/certifications/Quickbooks Certificate.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                QuickBooks
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/Freelancing Certificate.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                Freelancing
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/Sustainability.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                Intro to IFRS Sustainability Disclosure Standards
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/AI.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                AI For Everyone
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/Reading Fs.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                Reading Financial Statements
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/BI.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                Insight into Power BI
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/Query.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                Master Power Query
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/Disc.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                DFS - Professional Skills Job Simulation
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/Excel.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                Insight into Advanced Excel
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/Audit.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                Insight into Practical Audit
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/Pwc.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                PwC US - Audit Job Simulation
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/Kpmg.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                KPMG U.S. - Audit Job Simulation
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/PPE.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                Presentation and Personal Effectiveness
-                            </span>
-                            
-                            <span onclick="openModal('public/certifications/MS.jpg')" class="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full cursor-pointer hover:bg-blue-200 transition duration-300">
-                                MS Office
-                            </span>
-                        </div>
-                    </div>
+        <section id="skills" class="py-16">
+            <div class="text-center mb-16">
+                <h2 class="text-base text-royal-400 font-semibold tracking-wide uppercase">Expertise</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    Skills & Certifications
+                </p>
+            </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <div class="glass-card rounded-2xl shadow-lg p-8 hover:border-royal-500/30 transition duration-300">
+                    <h3 class="text-xl font-bold text-white mb-6 text-center border-b border-white/10 pb-4">Technical Skills</h3>
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">External Audits</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">Smart Audit Software</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">Financial Variance Analysis</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">Power BI</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">Power Query</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">Data Analysis & Visualization</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">MS Office</span>
+                    </div>
                 </div>
-            </section>
 
-            <section id="contact" class="py-16">
-                <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-3xl font-bold text-slate-800 mb-4">Let's Connect</h2>
-                    <p class="text-lg text-slate-600 mb-8 max-w-lg mx-auto">
-                        I am based in Lahore, Punjab, and always open to learning and meaningful connections.
-                    </p>
-                    <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
-                        <a href="mailto:fahad.naveedca@gmail.com" class="bg-white/70 backdrop-blur-md px-8 py-4 rounded-lg shadow-lg border border-slate-200/50 text-slate-700 font-medium hover:bg-slate-50 transition duration-300 w-full md:w-auto">
-                            <span class="font-semibold block text-sm text-slate-500">Email</span>
+                <div class="glass-card rounded-2xl shadow-lg p-8 hover:border-royal-500/30 transition duration-300">
+                    <h3 class="text-xl font-bold text-white mb-6 text-center border-b border-white/10 pb-4">Soft Skills</h3>
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">Teamwork</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">Adaptability</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">Analytical Thinking</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">Client Communication</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">Entrepreneurial Initiative</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-sm font-medium px-4 py-2 rounded-full border border-royal-500/20">Intellectual Curiosity</span>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 glass-card rounded-2xl shadow-lg p-8 hover:border-royal-500/30 transition duration-300">
+                    <h3 class="text-xl font-bold text-white mb-2 text-center">Certifications & Training</h3>
+                    <p class="text-center text-sm text-slate-400 mb-6 italic">(Click to view certificates)</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button onclick="openModal('public/certifications/Quickbooks Certificate.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">QuickBooks</button>
+                        <button onclick="openModal('public/certifications/Freelancing Certificate.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">Freelancing</button>
+                        <button onclick="openModal('public/certifications/Sustainability.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">IFRS Sustainability Standards</button>
+                        <button onclick="openModal('public/certifications/AI.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">AI For Everyone</button>
+                        <button onclick="openModal('public/certifications/Reading Fs.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">Reading Financial Statements</button>
+                        <button onclick="openModal('public/certifications/BI.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">Insight into Power BI</button>
+                        <button onclick="openModal('public/certifications/Query.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">Master Power Query</button>
+                        <button onclick="openModal('public/certifications/Disc.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">DFS - Job Simulation</button>
+                        <button onclick="openModal('public/certifications/Excel.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">Advanced Excel</button>
+                        <button onclick="openModal('public/certifications/Audit.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">Insight into Practical Audit</button>
+                        <button onclick="openModal('public/certifications/Pwc.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">PwC US - Audit Job Simulation</button>
+                        <button onclick="openModal('public/certifications/Kpmg.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">KPMG U.S. - Audit Job Simulation</button>
+                        <button onclick="openModal('public/certifications/PPE.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">Presentation & Personal Effectiveness</button>
+                        <button onclick="openModal('public/certifications/MS.jpg')" class="px-4 py-2 text-sm font-medium text-slate-200 bg-white/5 border border-white/10 rounded-full hover:border-royal-500 hover:text-white hover:bg-royal-600 transition duration-200">MS Office</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer id="contact" class="pb-10 pt-20">
+            <div class="container mx-auto px-6 text-center">
+                
+                <div class="glass-footer rounded-3xl p-10 max-w-3xl mx-auto shadow-2xl">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-8">Ready to make an impact?</h2>
+                    
+                    <div class="flex flex-col md:flex-row justify-center gap-6">
+                        <a href="mailto:fahad.naveedca@gmail.com" class="flex items-center justify-center gap-2 px-6 py-3 bg-white/10 rounded-full hover:bg-white/20 transition backdrop-blur-sm text-white font-medium border border-white/10">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             fahad.naveedca@gmail.com
                         </a>
-                        <a href="https://www.linkedin.com/in/fahaad-ca" target="_blank" class="bg-white/70 backdrop-blur-md px-8 py-4 rounded-lg shadow-lg border border-slate-200/50 text-slate-700 font-medium hover:bg-slate-50 transition duration-300 w-full md:w-auto">
-                            <span class="font-semibold block text-sm text-slate-500">LinkedIn</span>
-                            /in/fahaad-ca
-                        </a>
-                        <a href="tel:03230731517" class="bg-white/70 backdrop-blur-md px-8 py-4 rounded-lg shadow-lg border border-slate-200/50 text-slate-700 font-medium hover:bg-slate-50 transition duration-300 w-full md:w-auto">
-                            <span class="font-semibold block text-sm text-slate-500">Phone</span>
+                        <a href="tel:03230731517" class="flex items-center justify-center gap-2 px-6 py-3 bg-white/10 rounded-full hover:bg-white/20 transition backdrop-blur-sm text-white font-medium border border-white/10">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                             0323 0731517
+                        </a>
+                        <a href="https://www.linkedin.com/in/fahaad-ca" target="_blank" class="flex items-center justify-center gap-2 px-6 py-3 bg-royal-600 rounded-full hover:bg-royal-700 transition shadow-lg shadow-royal-600/30 text-white font-medium">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            LinkedIn
                         </a>
                     </div>
                 </div>
-            </section>
+                
+                <div class="mt-12 text-slate-500 text-sm">
+                    <p>&copy; <span id="current-year"></span> Fahad Naveed. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
 
-        </div> 
     </main>
 
-    <footer class="bg-slate-800 text-slate-300 mt-20">
-        <div class="container mx-auto px-6 py-8 text-center">
-            <p>&copy; <span id="current-year"></span> Fahad Naveed. All rights reserved.</p>
-            <p class="text-sm text-slate-400 mt-2">Designed for a professional future.</p>
-        </div>
-    </footer>
-
-    <div id="image-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 hidden p-4" onclick="closeModal()">
-        <div class="relative max-w-4xl max-h-[90vh] w-full flex items-center justify-center">
-            <img id="modal-img" src="" alt="Certificate" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+    <div id="image-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 hidden backdrop-blur-sm p-4 opacity-0" onclick="closeModal()">
+        <div class="relative max-w-5xl max-h-[95vh] w-full flex items-center justify-center p-2">
+            <img id="modal-img" src="" alt="Certificate" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl border border-white/10">
             <button onclick="closeModal()" class="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -461,57 +442,49 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileLinks = document.querySelectorAll('.mobile-link');
-            
-            // Toggle mobile menu
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // Hide mobile menu after clicking a link
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-            
-            // Set current year in footer
-            const yearSpan = document.getElementById('current-year');
-            if (yearSpan) {
-                yearSpan.textContent = new Date().getFullYear();
-            }
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        // Modal Functions
-        function openModal(imageSrc) {
-            const modal = document.getElementById('image-modal');
-            const modalImg = document.getElementById('modal-img');
-            modalImg.src = imageSrc;
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Set Year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Modal Logic
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-img');
+
+        function openModal(src) {
+            modalImg.src = src;
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+            document.body.classList.add('no-scroll');
         }
 
         function closeModal() {
-            const modal = document.getElementById('image-modal');
-            modal.classList.add('hidden');
-            document.body.style.overflow = ''; // Restore scrolling
-            
-            // Clear src after fade out to prevent flashing old image next open
+            modal.classList.add('opacity-0');
             setTimeout(() => {
-                document.getElementById('modal-img').src = '';
+                modal.classList.add('hidden');
+                modalImg.src = '';
             }, 300);
+            document.body.classList.remove('no-scroll');
         }
 
-        // Close on Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
-            }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
         });
     </script>
-
 </body>
 </html>
