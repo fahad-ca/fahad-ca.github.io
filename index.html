@@ -7,8 +7,6 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,35 +20,19 @@
                     },
                     colors: {
                         navy: {
-                            800: '#1e293b', 
-                            900: '#0f172a', 
+                            800: '#1e293b', // Slate 800
+                            900: '#0f172a', // Slate 900 (Deep Navy)
                             950: '#020617', 
                         },
                         royal: {
                             300: '#93c5fd',
                             400: '#60a5fa',
-                            500: '#3b82f6', 
+                            500: '#3b82f6', // Bright Blue
                             600: '#2563eb',
                         }
                     },
                     screens: {
-                        'xs': '375px',
-                    },
-                    animation: {
-                        'blob': 'blob 7s infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        }
+                        'xs': '375px', // Tiny phones
                     }
                 }
             }
@@ -62,48 +44,34 @@
         body {
             background-color: #0f172a; 
             color: #e2e8f0;
-            overflow-x: hidden; 
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         
-        /* Deep 3D Background */
-        .bg-deep-space {
-            background: radial-gradient(circle at top left, #1e293b, #0f172a, #020617);
-            background-attachment: fixed;
+        /* Matte & Glassy Background Texture */
+        .bg-glassy-navy {
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%), 
+                radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08), transparent 25%);
+            background-color: #0f172a;
         }
 
-        /* PREMIUM GLASS CARD 
-           - Added top/left border highlight for 3D edge effect 
-           - Added subtle inner glow
-        */
+        /* Dark Glass Card Style */
         .glass-card {
-            background: rgba(30, 41, 59, 0.4); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.15); /* Rim Light */
-            border-left: 1px solid rgba(255, 255, 255, 0.15); /* Rim Light */
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(30, 41, 59, 0.6); 
+            backdrop-filter: blur(16px);       
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); 
         }
 
-        /* Footer Glass */
         .glass-footer {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(15px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Gradient Text */
-        .text-gradient {
-            background: linear-gradient(to right, #ffffff, #93c5fd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Scroll Offset */
+        /* Scroll Offset for Sticky Header */
         section {
-            scroll-margin-top: 7rem;
+            scroll-margin-top: 6rem;
         }
 
         .no-scroll {
@@ -114,7 +82,7 @@
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         
-        /* Mobile Menu Animations */
+        /* Smooth fade for mobile menu */
         .mobile-menu-enter {
             opacity: 0;
             transform: translateY(-10px);
@@ -126,26 +94,18 @@
         }
     </style>
 </head>
-<body class="relative antialiased selection:bg-royal-500 selection:text-white bg-deep-space">
+<body class="relative antialiased selection:bg-royal-500 selection:text-white bg-glassy-navy">
 
-    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-        <div class="absolute top-0 left-1/4 w-96 h-96 bg-royal-600/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
-        <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
-    </div>
-
-    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-navy-950/70 backdrop-blur-xl shadow-lg border-b border-white/5">
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-navy-950/90 backdrop-blur-xl shadow-lg border-b border-white/5">
         <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
             
-            <a href="#hero" class="text-lg sm:text-xl md:text-2xl font-bold text-white tracking-tight flex items-center gap-3 group">
-                <div class="relative overflow-hidden rounded-full p-[2px] bg-gradient-to-r from-royal-500 to-purple-500">
-                    <img 
-                        src="public/Fahad_Naveed_Picture_PhotoGrid.png" 
-                        alt="Fahad" 
-                        class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover object-top backface-hidden"
-                    >
-                </div>
-                <span class="group-hover:text-royal-300 transition-colors">Fahad Naveed</span>
+            <a href="#hero" class="text-lg sm:text-xl md:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <img 
+                    src="public/Fahad_Naveed_Picture_PhotoGrid.png" 
+                    alt="Fahad" 
+                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover object-top border-2 border-royal-500 shadow-md"
+                >
+                Fahad Naveed
             </a>
             
             <div class="hidden md:flex space-x-6 lg:space-x-8 items-center">
@@ -153,7 +113,7 @@
                 <a href="#experience" class="text-slate-300 hover:text-white text-sm font-medium transition duration-300 hover:scale-105">Experience</a>
                 <a href="#education" class="text-slate-300 hover:text-white text-sm font-medium transition duration-300 hover:scale-105">Education</a>
                 <a href="#skills" class="text-slate-300 hover:text-white text-sm font-medium transition duration-300 hover:scale-105">Skills</a>
-                <a href="#contact" class="px-5 py-2 bg-white/10 hover:bg-white/20 border border-white/10 text-white text-sm font-semibold rounded-full transition shadow-lg backdrop-blur-md">Let's Connect</a>
+                <a href="#contact" class="px-5 py-2 bg-royal-500 text-white text-sm font-semibold rounded-full hover:bg-royal-600 transition shadow-lg shadow-royal-500/30">Let's Connect</a>
             </div>
             
             <button id="mobile-menu-btn" class="md:hidden p-2 text-white focus:outline-none bg-white/5 rounded-lg border border-white/10">
@@ -163,7 +123,7 @@
             </button>
         </nav>
         
-        <div id="mobile-menu" class="md:hidden hidden bg-navy-900/95 backdrop-blur-xl border-t border-white/10 absolute w-full z-40 shadow-2xl">
+        <div id="mobile-menu" class="md:hidden hidden bg-navy-900 border-t border-white/10 absolute w-full z-40 shadow-2xl">
             <a href="#about" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link border-b border-white/5">About</a>
             <a href="#experience" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link border-b border-white/5">Experience</a>
             <a href="#education" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link border-b border-white/5">Education</a>
@@ -176,23 +136,23 @@
 
         <section id="hero" class="min-h-[auto] md:min-h-[80vh] flex flex-col md:flex-row items-center justify-center md:justify-between gap-10 md:gap-12 mb-16 md:mb-20">
             
-            <div class="md:w-1/2 flex justify-center relative mt-8 md:mt-0 order-1 animate-float" data-aos="fade-right" data-aos-duration="1000">
-                <div class="absolute w-56 h-56 sm:w-72 sm:h-72 bg-royal-500/30 rounded-full blur-[60px] -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                <div class="relative p-1 rounded-full bg-gradient-to-b from-white/20 to-transparent">
+            <div class="md:w-1/2 flex justify-center relative mt-8 md:mt-0 order-1">
+                <div class="absolute w-56 h-56 sm:w-72 sm:h-72 bg-royal-500/20 rounded-full blur-3xl -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                <div class="relative">
                     <img 
                         src="public/Fahad_Naveed_Picture_PhotoGrid.png" 
                         alt="Fahad Naveed" 
-                        class="relative rounded-full w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 object-cover object-top border-4 border-navy-900 shadow-2xl"
+                        class="relative rounded-full w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 object-cover object-top border-4 border-navy-800 ring-4 ring-royal-500/50 shadow-2xl"
                     >
                 </div>
             </div>
 
-            <div class="md:w-1/2 text-center md:text-left space-y-4 sm:space-y-6 order-2" data-aos="fade-left" data-aos-duration="1000">
-                <h1 class="text-5xl xs:text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 tracking-tight leading-tight whitespace-nowrap">
+            <div class="md:w-1/2 text-center md:text-left space-y-4 sm:space-y-6 order-2">
+                <h1 class="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight whitespace-nowrap">
                     Fahad Naveed
                 </h1>
                 
-                <p class="text-lg sm:text-xl lg:text-2xl text-royal-400 font-medium leading-snug">
+                <p class="text-[10px] xs:text-xs sm:text-base md:text-lg lg:text-2xl text-royal-400 font-medium whitespace-nowrap">
                     Ex-Audit Intern | CA Finalist | ICAP | BS FinTech
                 </p>
                 
@@ -201,7 +161,7 @@
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
-                    <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 bg-royal-600 text-white text-center font-semibold rounded-xl hover:bg-royal-500 transition shadow-xl shadow-royal-600/30 transform hover:-translate-y-1 hover:scale-105 active:scale-95 duration-200">
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 bg-royal-600 text-white text-center font-semibold rounded-xl hover:bg-royal-500 transition shadow-xl shadow-royal-600/20 transform hover:-translate-y-1">
                         Let's Connect
                     </a>
                 </div>
@@ -210,7 +170,7 @@
         </section>
 
         <section id="about" class="py-12 sm:py-16">
-            <div class="glass-card rounded-2xl p-6 sm:p-8 md:p-12 shadow-xl max-w-4xl mx-auto text-center" data-aos="fade-up" data-tilt data-tilt-max="2" data-tilt-glare data-tilt-max-glare="0.1">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 md:p-12 shadow-xl max-w-4xl mx-auto text-center">
                 <h2 class="text-2xl sm:text-3xl font-bold text-white mb-6">About Me</h2>
                 <p class="text-slate-300 leading-relaxed mb-4 text-left md:text-center text-base sm:text-lg">
                     I am a CAF qualified student from ICAP. I recently completed my role as an Audit Intern at M. Almas & Co., where I was part of the audit team engaged in the statutory audit of a listed company in Pakistan.
@@ -222,7 +182,7 @@
         </section>
 
         <section id="experience" class="py-12 sm:py-16">
-            <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
+            <div class="text-center mb-12 sm:mb-16">
                 <h2 class="text-sm sm:text-base text-royal-400 font-semibold tracking-wide uppercase">Career Path</h2>
                 <p class="mt-2 text-2xl sm:text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
                     Professional Experience
@@ -231,10 +191,10 @@
             
             <div class="space-y-6 sm:space-y-8 max-w-5xl mx-auto">
                 
-                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg transition duration-300 group" data-aos="fade-up" data-tilt data-tilt-max="3" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
                     <div class="flex flex-col md:flex-row justify-between items-start mb-6 gap-4">
                         <div class="flex items-start gap-4 sm:gap-5 w-full md:w-auto">
-                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white/90 rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-2 transform group-hover:scale-110 transition-transform duration-300">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-2">
                                 <img src="public/logo2.svg" alt="Global Financials" class="w-full h-full object-contain">
                             </div>
                             <div class="flex-1">
@@ -247,7 +207,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="https://globalfinancials.org" target="_blank" class="w-full md:w-auto text-center mt-2 md:mt-0 inline-flex justify-center items-center gap-2 px-4 py-2 bg-white/5 text-slate-300 text-sm font-medium rounded-lg hover:bg-royal-600 hover:text-white transition-all border border-white/10 hover:border-royal-500">
+                        <a href="https://globalfinancials.org" target="_blank" class="w-full md:w-auto text-center mt-2 md:mt-0 inline-flex justify-center items-center gap-2 px-4 py-2 bg-navy-900/50 text-slate-300 text-sm font-medium rounded-lg hover:bg-royal-600 hover:text-white transition-colors border border-white/10">
                             <span>globalfinancials.org</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -262,10 +222,10 @@
                     </div>
                 </div>
 
-                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg transition duration-300 group" data-aos="fade-up" data-tilt data-tilt-max="3" data-tilt-glare data-tilt-max-glare="0.2">
+                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
                     <div class="flex flex-col md:flex-row justify-between items-start mb-6">
                         <div class="flex items-start gap-4 sm:gap-5">
-                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white/90 rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden transform group-hover:scale-110 transition-transform duration-300">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
                                 <img src="public/Almas.jpg" alt="M. Almas & Co." class="w-full h-full object-contain">
                             </div>
                             <div>
@@ -281,9 +241,9 @@
                     </div>
 
                     <div class="pl-0 md:pl-20 text-slate-300 text-sm sm:text-base">
-                        <ul class="list-disc list-outside space-y-2 sm:space-y-3 ml-4 marker:text-royal-500">
+                        <ul class="list-disc list-outside space-y-2 sm:space-y-3 ml-4">
                             <li><strong>Stock Take Assignments:</strong> Inventory counts for One Life Apparel & EZY Mix Industries.</li>
-                            <li><strong>Statutory Audit:</strong> Assisted in audit of Leiner Pak Gelatin Limited (Governance, Relations).</li>
+                            <li><strong>Statutory Audit:</strong> Assisted in statutory audit of Leiner Pak Gelatin Limited.</li>
                             <li><strong>Smart Audit Software:</strong> Maintained working papers for accuracy & completeness.</li>
                             <li><strong>Financial Analysis:</strong> KIBOR computations, Sales analysis, Variance analysis.</li>
                             <li><strong>Confirmations:</strong> Drafted and tested bank/debtor confirmations.</li>
@@ -296,7 +256,7 @@
         </section>
 
         <section id="education" class="py-12 sm:py-16">
-            <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
+            <div class="text-center mb-12 sm:mb-16">
                 <h2 class="text-sm sm:text-base text-royal-400 font-semibold tracking-wide uppercase">Academic Background</h2>
                 <p class="mt-2 text-2xl sm:text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
                     Education & Qualifications
@@ -305,10 +265,10 @@
 
             <div class="space-y-6 sm:space-y-8 max-w-5xl mx-auto">
                 
-                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg transition duration-300" data-aos="fade-up" data-tilt data-tilt-max="2">
+                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
                     <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                         <div class="flex items-start gap-4 sm:gap-5">
-                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white/90 rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
                                 <img src="public/NCBAE.jpg" alt="NCBAE" class="w-full h-full object-contain">
                             </div>
                             <div>
@@ -323,10 +283,10 @@
                     </div>
                 </div>
 
-                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg transition duration-300" data-aos="fade-up" data-aos-delay="100" data-tilt data-tilt-max="2">
+                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
                     <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                         <div class="flex items-start gap-4 sm:gap-5">
-                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white/90 rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
                                 <img src="public/ICAP.jpg" alt="ICAP" class="w-full h-full object-contain">
                             </div>
                             <div>
@@ -341,10 +301,10 @@
                     </div>
                 </div>
 
-                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg transition duration-300" data-aos="fade-up" data-aos-delay="200" data-tilt data-tilt-max="2">
+                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
                     <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                         <div class="flex items-start gap-4 sm:gap-5">
-                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white/90 rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
                                 <img src="public/GCCG.jpg" alt="GCCG" class="w-full h-full object-contain">
                             </div>
                             <div>
@@ -354,15 +314,15 @@
                             </div>
                         </div>
                         <div class="mt-2 md:mt-0 w-full md:w-auto">
-                            <span class="inline-block px-4 py-2 bg-white/5 text-slate-300 text-xs sm:text-sm font-semibold rounded-lg border border-white/10 w-fit">2021 - 2023</span>
+                            <span class="inline-block px-4 py-2 bg-navy-900/50 text-slate-300 text-xs sm:text-sm font-semibold rounded-lg border border-white/10 w-fit">2021 - 2023</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg transition duration-300" data-aos="fade-up" data-aos-delay="300" data-tilt data-tilt-max="2">
+                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-lg hover:border-royal-500/30 transition duration-300">
                     <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                         <div class="flex items-start gap-4 sm:gap-5">
-                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white/90 rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center p-1 overflow-hidden">
                                 <img src="public/Allied School.jpg" alt="Allied School" class="w-full h-full object-contain">
                             </div>
                             <div>
@@ -372,7 +332,7 @@
                             </div>
                         </div>
                         <div class="mt-2 md:mt-0 w-full md:w-auto">
-                            <span class="inline-block px-4 py-2 bg-white/5 text-slate-300 text-xs sm:text-sm font-semibold rounded-lg border border-white/10 w-fit">2019 - 2021</span>
+                            <span class="inline-block px-4 py-2 bg-navy-900/50 text-slate-300 text-xs sm:text-sm font-semibold rounded-lg border border-white/10 w-fit">2019 - 2021</span>
                         </div>
                     </div>
                 </div>
@@ -381,7 +341,7 @@
         </section>
 
         <section id="skills" class="py-12 sm:py-16">
-            <div class="text-center mb-12 sm:mb-16" data-aos="zoom-in">
+            <div class="text-center mb-12 sm:mb-16">
                 <h2 class="text-sm sm:text-base text-royal-400 font-semibold tracking-wide uppercase">Expertise</h2>
                 <p class="mt-2 text-2xl sm:text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
                     Skills & Certifications
@@ -390,32 +350,32 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
                 
-                <div class="glass-card rounded-2xl shadow-lg p-6 sm:p-8 transition duration-300" data-aos="fade-right" data-tilt data-tilt-max="2">
+                <div class="glass-card rounded-2xl shadow-lg p-6 sm:p-8 hover:border-royal-500/30 transition duration-300">
                     <h3 class="text-lg sm:text-xl font-bold text-white mb-6 text-center border-b border-white/10 pb-4">Technical Skills</h3>
                     <div class="flex flex-wrap gap-2 sm:gap-3 justify-center">
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">External Audits</span>
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">Smart Audit Software</span>
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">Financial Variance Analysis</span>
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">Power BI</span>
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">Power Query</span>
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">Data Analysis & Visualization</span>
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">MS Office</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">External Audits</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">Smart Audit Software</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">Financial Variance Analysis</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">Power BI</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">Power Query</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">Data Analysis & Visualization</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">MS Office</span>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-2xl shadow-lg p-6 sm:p-8 transition duration-300" data-aos="fade-left" data-tilt data-tilt-max="2">
+                <div class="glass-card rounded-2xl shadow-lg p-6 sm:p-8 hover:border-royal-500/30 transition duration-300">
                     <h3 class="text-lg sm:text-xl font-bold text-white mb-6 text-center border-b border-white/10 pb-4">Soft Skills</h3>
                     <div class="flex flex-wrap gap-2 sm:gap-3 justify-center">
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">Teamwork</span>
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">Adaptability</span>
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">Analytical Thinking</span>
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">Client Communication</span>
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">Entrepreneurial Initiative</span>
-                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20 hover:bg-royal-500/20 transition-colors">Intellectual Curiosity</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">Teamwork</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">Adaptability</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">Analytical Thinking</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">Client Communication</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">Entrepreneurial Initiative</span>
+                        <span class="bg-royal-500/10 text-royal-300 text-xs sm:text-sm font-medium px-3 sm:px-4 py-2 rounded-full border border-royal-500/20">Intellectual Curiosity</span>
                     </div>
                 </div>
 
-                <div class="md:col-span-2 glass-card rounded-2xl shadow-lg p-6 sm:p-8 transition duration-300" data-aos="fade-up" data-tilt data-tilt-max="1" data-tilt-glare data-tilt-max-glare="0.05">
+                <div class="md:col-span-2 glass-card rounded-2xl shadow-lg p-6 sm:p-8 hover:border-royal-500/30 transition duration-300">
                     <h3 class="text-lg sm:text-xl font-bold text-white mb-2 text-center">Certifications & Training</h3>
                     <p class="text-center text-xs sm:text-sm text-slate-400 mb-6 italic">(Click to view certificates)</p>
                     
@@ -445,7 +405,7 @@
         <footer id="contact" class="pb-10 pt-16 sm:pt-20">
             <div class="container mx-auto px-4 sm:px-6 text-center">
                 
-                <div class="glass-footer rounded-3xl p-8 sm:p-10 max-w-3xl mx-auto shadow-2xl" data-aos="fade-up" data-tilt data-tilt-max="2">
+                <div class="glass-footer rounded-3xl p-8 sm:p-10 max-w-3xl mx-auto shadow-2xl">
                     <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-6 sm:mb-8">Ready to make an impact?</h2>
                     
                     <div class="flex flex-col md:flex-row justify-center gap-4 sm:gap-6">
@@ -483,27 +443,7 @@
         </div>
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-    
     <script>
-        // Initialize AOS
-        AOS.init({
-            once: true,
-            offset: 50,
-            duration: 800,
-        });
-
-        // Initialize VanillaTilt for non-touch devices
-        if (window.matchMedia("(hover: hover)").matches) {
-            VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-                max: 5,
-                speed: 400,
-                glare: true,
-                "max-glare": 0.2,
-            });
-        }
-
         // Mobile Menu Toggle
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
