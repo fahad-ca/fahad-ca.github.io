@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakistan's Silent Crisis | Fahad Naveed</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#1e293b', 
+                            900: '#0f172a', 
+                            950: '#020617', 
+                        },
+                        royal: {
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6', 
+                            600: '#2563eb',
+                        }
+                    },
+                    screens: {
+                        'xs': '375px', 
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0f172a; 
+            color: #e2e8f0;
+            overflow-x: hidden; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .bg-glassy-navy {
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.05), transparent 25%), 
+                radial-gradient(circle at 85% 30%, rgba(225, 29, 72, 0.03), transparent 25%);
+            background-color: #0f172a;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6); 
+            backdrop-filter: blur(16px);       
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); 
+        }
+
+        .glass-footer {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-menu-enter {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        .mobile-menu-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        }
+
+        .article-prose p {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="relative antialiased selection:bg-royal-500 selection:text-white bg-glassy-navy">
+
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 bg-navy-950/90 backdrop-blur-xl shadow-lg border-b border-white/5">
+        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            
+            <a href="index.html" class="text-lg sm:text-xl md:text-2xl font-bold text-white tracking-tight flex items-center gap-3 hover:opacity-80 transition">
+                <img src="public/Fahad_Naveed_Picture_PhotoGrid.png" alt="Fahad" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover object-top border-2 border-royal-500 shadow-md">
+                Fahad Naveed
+            </a>
+            
+            <div class="hidden md:flex space-x-6 lg:space-x-8 items-center">
+                <a href="index.html#about" class="text-slate-300 hover:text-white text-sm font-medium transition duration-300 hover:scale-105">About</a>
+                <a href="index.html#experience" class="text-slate-300 hover:text-white text-sm font-medium transition duration-300 hover:scale-105">Experience</a>
+                <a href="index.html#education" class="text-slate-300 hover:text-white text-sm font-medium transition duration-300 hover:scale-105">Education</a>
+                <a href="index.html#skills" class="text-slate-300 hover:text-white text-sm font-medium transition duration-300 hover:scale-105">Skills</a>
+                <a href="articles.html" class="text-white font-bold text-sm transition duration-300 border-b-2 border-royal-500 pb-1">Articles</a>
+                <a href="index.html#contact" class="px-5 py-2 bg-royal-500 text-white text-sm font-semibold rounded-full hover:bg-royal-600 transition shadow-lg shadow-royal-500/30">Let's Connect</a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-white focus:outline-none bg-white/5 rounded-lg border border-white/10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </nav>
+        
+        <div id="mobile-menu" class="md:hidden hidden bg-navy-900 border-t border-white/10 absolute w-full z-40 shadow-2xl">
+            <a href="index.html#about" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link border-b border-white/5">About</a>
+            <a href="index.html#experience" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link border-b border-white/5">Experience</a>
+            <a href="index.html#education" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link border-b border-white/5">Education</a>
+            <a href="index.html#skills" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link border-b border-white/5">Skills</a>
+            <a href="articles.html" class="block px-6 py-4 text-royal-400 font-bold hover:bg-white/5 mobile-link border-b border-white/5 bg-white/5">Articles</a>
+            <a href="index.html#contact" class="block px-6 py-4 text-slate-300 hover:bg-white/5 mobile-link bg-white/5">Contact Me</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 pt-28 sm:pt-36 pb-16 flex-grow">
+        
+        <div class="max-w-4xl mx-auto mb-6">
+            <a href="articles.html" class="inline-flex items-center text-sm font-medium text-slate-400 hover:text-white transition">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Articles
+            </a>
+        </div>
+
+        <article class="max-w-4xl mx-auto glass-card rounded-3xl p-6 sm:p-10 lg:p-14 mb-10 shadow-2xl">
+            
+            <header class="mb-10 border-b border-white/10 pb-10">
+                <div class="flex flex-wrap items-center gap-3 mb-6">
+                    <span class="px-3 py-1 text-xs font-semibold text-rose-300 bg-rose-500/10 rounded-full border border-rose-500/20">Socio-Economics</span>
+                    <span class="text-sm text-slate-500 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        June 2026
+                    </span>
+                    <span class="text-sm text-slate-500 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        8 Min Read
+                    </span>
+                </div>
+                
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-8">
+                    Pakistan's Silent Crisis: 4 in 10 Pakistanis Are Mentally Unwell. Nobody Is Talking About It.
+                </h1>
+                
+                <div class="flex items-center gap-4">
+                    <img src="public/Fahad_Naveed_Picture_PhotoGrid.png" alt="Fahad Naveed" class="w-14 h-14 rounded-full border-2 border-royal-500 object-cover">
+                    <div>
+                        <p class="text-white font-semibold text-lg">Fahad Naveed</p>
+                        <p class="text-sm text-royal-400">Fintech | CA Finalist | ICAP | Ex-Audit Intern</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="article-prose text-slate-300 text-lg leading-relaxed font-light">
+                
+                <p class="text-xl text-slate-200 leading-relaxed font-medium">It does not make headlines. It does not trend on Twitter. It isn't debated in parliament or discussed at family dinner tables. But it is happening in every household, in every street, and in every city of this country.</p>
+                
+                <p>Nearly <a href="https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2026.1734392/full" target="_blank" class="text-royal-400 hover:text-royal-300 underline underline-offset-4 decoration-royal-500/50">40 percent of Pakistanis</a> are currently living with some form of mental illness. Depression. Anxiety. Trauma. Chronic stress. Immense grief with absolutely nowhere to turn. We are a nation of over 240 million people, and nearly half of us are silently fighting battles inside our own minds. Yet, the systemic infrastructure built to help us barely exists, and the societal empathy required to support us is entirely absent.</p>
+
+                <p>If a physical disease infected 40% of our population, emergency sirens would wail. Budgets would be reallocated. International aid would be mobilized. But because this illness is invisible, our response has been defensive, dismissive, and culturally toxic. We call it weakness. We call it drama. We call it a lack of faith, an absence of patience, or worse, demonic possession. We call it everything except what it actually is: A catastrophic public health emergency hiding in plain sight.</p>
+
+                <blockquote class="my-14 p-6 sm:p-10 bg-white/5 border-l-4 border-rose-500 rounded-r-2xl italic shadow-xl">
+                    <p class="text-xl sm:text-2xl text-slate-200 font-semibold leading-snug">"Mental health is not a private burden. It is a national responsibility. And Pakistan has abandoned it entirely."</p>
+                </blockquote>
+
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mt-16 mb-8">The Data We Refuse to Acknowledge</h2>
+                
+                <p>These are not estimates from outside observers trying to paint a bleak picture of developing nations. These are harsh, clinical realities pulled directly from domestic research, national health investigations, and World Health Organization (WHO) reports.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+                    <div class="bg-navy-900/60 border border-white/10 rounded-2xl p-8 flex flex-col justify-center text-center shadow-lg transition-transform hover:-translate-y-1 duration-300">
+                        <span class="text-5xl font-extrabold text-royal-400 mb-3">40%</span>
+                        <span class="text-slate-300 font-medium">of the population living with a diagnosed mental disorder.</span>
+                    </div>
+                    <div class="bg-navy-900/60 border border-white/10 rounded-2xl p-8 flex flex-col justify-center text-center shadow-lg transition-transform hover:-translate-y-1 duration-300">
+                        <span class="text-5xl font-extrabold text-purple-400 mb-3">38%</span>
+                        <span class="text-slate-300 font-medium">living with clinical depression, with a staggering 25% in its severe form.</span>
+                    </div>
+                    <div class="bg-navy-900/60 border border-white/10 rounded-2xl p-8 flex flex-col justify-center text-center shadow-lg transition-transform hover:-translate-y-1 duration-300">
+                        <span class="text-5xl font-extrabold text-rose-400 mb-3">15 to 35</span>
+                        <span class="text-slate-300 font-medium">people tragically taking their own lives in Pakistan every single day.</span>
+                    </div>
+                    <div class="bg-navy-900/60 border border-white/10 rounded-2xl p-8 flex flex-col justify-center text-center shadow-lg transition-transform hover:-translate-y-1 duration-300">
+                        <span class="text-5xl font-extrabold text-emerald-400 mb-3">0.2</span>
+                        <span class="text-slate-300 font-medium">psychiatrists available per 100,000 people. The system is broken.</span>
+                    </div>
+                </div>
+
+                <p>To put that daily suicide rate into a broader, more devastating perspective: <strong>19,331 suicide deaths</strong> were officially recorded in Pakistan in a single recent year. That number is likely highly underreported due to the legal and religious stigma surrounding suicide. Each one of those statistics was somebody's child, parent, sibling, or friend who felt that death was a better alternative than waking up to another day in this system.</p>
+
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mt-16 mb-8">The Cultural Straitjacket: "Log Kya Kahenge?"</h2>
+                <p>The numbers only tell half the story. The other half is written in our culture. In Pakistan, mental health is deeply intertwined with societal honor (<em>Izzat</em>). The fear of <em>"Log kya kahenge"</em> (what will people say?) prevents thousands of families from seeking professional psychiatric help.</p>
+                
+                <p>Instead of viewing a chemical imbalance in the brain the same way we view a chemical imbalance in the pancreas (like diabetes), we view it as a moral failing. We hide our depressed siblings. We lock away our schizophrenic elders. We take our anxious youth to spiritual healers and entirely bypass medical science. This cultural gaslighting forces the sufferers to internalize their pain, breeding deep shame and isolation.</p>
+
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mt-16 mb-8">Who Is Suffering? Everyone You Know.</h2>
+                <p>This is not a problem restricted to one socio-economic class. It isn't a "First World problem" or a "rich person's disease," as it is so often mocked. It touches every corner of Pakistani life, manifesting differently depending on the societal pressures applied.</p>
+
+                <div class="space-y-6 my-10">
+                    <div class="bg-white/5 border-l-4 border-royal-500 p-6 sm:p-8 rounded-r-2xl shadow-md">
+                        <h4 class="text-white font-bold text-xl mb-2">The Unemployed Graduate</h4>
+                        <p class="text-slate-400">Armed with a degree but facing a crippled economy, he has been unemployed for two years. Over time, the rejections piled up. He stopped telling people he was looking for work. Then, he stopped getting out of bed. Society called him "lazy." Nobody noticed his severe clinical depression until it was simply too late.</p>
+                    </div>
+                    <div class="bg-white/5 border-l-4 border-purple-500 p-6 sm:p-8 rounded-r-2xl shadow-md">
+                        <h4 class="text-white font-bold text-xl mb-2">The Silenced Woman</h4>
+                        <p class="text-slate-400">Kept inside four walls all her life. No career. No financial freedom. No voice in household decisions. Her intense psychological distress and postpartum depression were labelled as "obedience," "sacrifice," and "modesty" for twenty years before her mind finally gave way to illness.</p>
+                    </div>
+                    <div class="bg-white/5 border-l-4 border-rose-500 p-6 sm:p-8 rounded-r-2xl shadow-md">
+                        <h4 class="text-white font-bold text-xl mb-2">The Burdened Son ("Mard ko dard nahi hota")</h4>
+                        <p class="text-slate-400">Crushed under the hyper-masculine expectation of being the sole breadwinner in an inflationary crisis. He is told that "men don't cry" and "men don't complain." He swallows his anxiety attacks whole because expressing vulnerability is culturally equated with failing as a man.</p>
+                    </div>
+                    <div class="bg-white/5 border-l-4 border-emerald-500 p-6 sm:p-8 rounded-r-2xl shadow-md">
+                        <h4 class="text-white font-bold text-xl mb-2">The Crushed Student</h4>
+                        <p class="text-slate-400">A teenager buckling under the immense weight of MDCAT, CA, or CSS expectations. Their worth is entirely tied to an exam score. They are trapped in the silence of an educational system that demands perfection but offers no trained counsellor and absolutely no safe space to fail.</p>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mt-16 mb-8">We Tell Them to Pray More. The System Offers Nothing Else.</h2>
+                <p>When someone finally gathers the courage to speak up in Pakistan, the response is almost universally identical: <em>"Pray more. Be patient. Read the Quran. Think of those who have it worse than you. Stop being so ungrateful."</em></p>
+
+                <p>Faith is a beautiful, powerful anchor for millions. But faith is not a substitute for medical science. We do not tell someone with a broken leg to "pray away the fracture" without also taking them to an orthopedic surgeon. Yet, we expect the chemically imbalanced brain to heal through sheer willpower.</p>
+
+                <p>What nobody says is: <em>"Here is a counsellor. Here is a safe space. Here is a medical professional trained to listen and help you navigate this."</em></p>
+
+                <p>The institutional void backing this cultural silence is staggering. With fewer than 0.2 psychiatrists per 100,000 citizens, the medical infrastructure is mathematically incapable of handling the crisis. The brain drain of our medical professionals to the West only exacerbates this. Most primary health centres in rural and semi-urban areas have zero mental health provisions. State insurance programs rarely, if ever, cover psychological therapy, making it a luxury only the elite can afford.</p>
+
+                <div class="bg-gradient-to-br from-navy-800 to-navy-900 border border-white/10 rounded-3xl p-8 sm:p-12 mt-16 shadow-2xl">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white mb-8">A Blueprint for Survival: This Cannot Stay Silent Any Longer</h3>
+                    <p class="text-slate-300 mb-8">Treating mental illness as a private matter, as a personal weakness, or as something to hide in the shadows has failed. People are dying. The silence is not peaceful. It is deadly. We need immediate, structural, and cultural change:</p>
+                    
+                    <ul class="space-y-8">
+                        <li class="flex items-start gap-5">
+                            <div class="mt-1 bg-royal-500/20 p-3 rounded-xl text-royal-400 flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <strong class="text-white block text-xl mb-2">Empower Lady Health Workers (LHWs)</strong>
+                                <span class="text-slate-400 block leading-relaxed">Our LHWs are the backbone of grassroots healthcare. They reach households and rural communities that no specialized doctor ever will. We must give them the diagnostic tools and training to spot mental distress early, particularly in women, and refer patients properly.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-5">
+                            <div class="mt-1 bg-royal-500/20 p-3 rounded-xl text-royal-400 flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                            </div>
+                            <div>
+                                <strong class="text-white block text-xl mb-2">Mandate Counsellors in Education</strong>
+                                <span class="text-slate-400 block leading-relaxed">We cannot demand academic excellence while ignoring psychological collapse. We must put certified counsellors in every school and university. A student in an active mental crisis should not have to leave campus to find a professional who will listen without judgment.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-5">
+                            <div class="mt-1 bg-royal-500/20 p-3 rounded-xl text-royal-400 flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <strong class="text-white block text-xl mb-2">Institutionalize Mental Health in the National Budget</strong>
+                                <span class="text-slate-400 block leading-relaxed">What a country funds is a direct reflection of what a country values. Right now, Pakistan funds next to nothing for psychological care. Mental health treatments must be subsidized and included in state health insurance initiatives like the Sehat Sahulat Program.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-5">
+                            <div class="mt-1 bg-royal-500/20 p-3 rounded-xl text-royal-400 flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg>
+                            </div>
+                            <div>
+                                <strong class="text-white block text-xl mb-2">Destigmatize the Conversation</strong>
+                                <span class="text-slate-400 block leading-relaxed">This starts at home. Stop equating clinical depression with a lack of faith. Ask your friends how they are doing. Let men express emotional exhaustion without emasculating them. The simple act of listening, without offering unsolicited religious or cultural advice, can save a life.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </article>
+    </main>
+
+    <footer class="pb-10 pt-10 mt-auto border-t border-white/10">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="mailto:fahad.naveedca@gmail.com" class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition shadow-lg backdrop-blur-sm">
+                    <span class="sr-only">Email</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </a>
+                
+                <a href="https://wa.me/923442607172" target="_blank" class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition shadow-lg backdrop-blur-sm">
+                    <span class="sr-only">WhatsApp</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                </a>
+
+                <a href="https://www.linkedin.com/in/fahaad-ca" target="_blank" class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-royal-600 transition shadow-lg backdrop-blur-sm">
+                    <span class="sr-only">LinkedIn</span>
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+            </div>
+            <div class="text-slate-500 text-xs sm:text-sm">
+                <p>&copy; <span id="current-year"></span> Fahad Naveed. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('mobile-menu-enter');
+                setTimeout(() => { mobileMenu.classList.add('mobile-menu-enter-active'); }, 10);
+            } else {
+                mobileMenu.classList.remove('mobile-menu-enter-active');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('mobile-menu-enter');
+                }, 200);
+            }
+        });
+
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
