@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>60% of Pakistani Marriages Are Between Cousins | Fahad Naveed</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+          colors: {
+            navy: { 800: '#1e293b', 900: '#0f172a', 950: '#020617' },
+            royal: { 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb' }
+          },
+          screens: { xs: '375px' }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #e2e8f0;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .bg-glassy-navy {
+      background:
+        radial-gradient(circle at 15% 50%, rgba(59,130,246,.05), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(225,29,72,.03), transparent 25%);
+      background-color: #0f172a;
+    }
+    .glass-card {
+      background: rgba(30,41,59,.6);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 4px 30px rgba(0,0,0,.3);
+    }
+    .mobile-menu-enter { opacity:0; transform:translateY(-10px); }
+    .mobile-menu-enter-active { opacity:1; transform:translateY(0); transition:opacity .2s ease-out,transform .2s ease-out; }
+
+    /* --- dot grid --- */
+    .dot-grid { display:grid; grid-template-columns:repeat(10,1fr); gap:5px; }
+    .dot { width:22px; height:22px; border-radius:50%; background:rgba(255,255,255,.07); transition:all .3s; }
+    .dot.affected { background:#e11d48; box-shadow:0 0 8px rgba(225,29,72,.55); }
+
+    /* --- section eyebrow --- */
+    .eyebrow {
+      font-size:.68rem; font-weight:700; letter-spacing:.18em;
+      text-transform:uppercase; color:#60a5fa;
+    }
+
+    /* --- stat progress bars --- */
+    .sbar { height:8px; border-radius:4px; background:rgba(255,255,255,.06); overflow:hidden; }
+    .sbar-fill { height:100%; border-radius:4px; transition:width 1.6s cubic-bezier(.4,0,.2,1); width:0; }
+
+    /* --- punnett square cells --- */
+    .p-cell {
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:14px 10px; border:1px solid rgba(255,255,255,.09); border-radius:10px;
+      font-weight:700; font-size:1.05rem; line-height:1.3;
+    }
+
+    /* --- fade-in on scroll --- */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+
+    /* --- pulse on affected Punnett cell --- */
+    @keyframes pg { 0%,100%{box-shadow:0 0 10px rgba(225,29,72,.3);} 50%{box-shadow:0 0 24px rgba(225,29,72,.65);} }
+    .pulse-cell { animation:pg 2.2s infinite; }
+
+    /* --- country flag pill --- */
+    .flag-pill {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:4px 12px; border-radius:999px; font-size:.75rem; font-weight:700;
+      border:1px solid;
+    }
+
+    /* prose paragraph spacing inside article */
+    .prose-body p { margin-bottom:1.45rem; }
+
+    /* chart canvas wrapper - prevents weird shrink */
+    .chart-wrap { position:relative; }
+
+    /* timeline connector dots */
+    .tl-dot { width:14px; height:14px; border-radius:50%; flex-shrink:0; margin-top:4px; }
+    .tl-line { width:2px; background:rgba(255,255,255,.08); flex-grow:1; min-height:32px; margin:6px 0; margin-left:6px; }
+
+    /* comparison row */
+    .cmp-bar { height:10px; border-radius:5px; background:rgba(255,255,255,.06); overflow:hidden; }
+    .cmp-bar-fill { height:100%; border-radius:5px; }
+
+    scrollbar-width:thin;
+    scrollbar-color:rgba(59,130,246,.4) transparent;
+  </style>
+</head>
+
+<body class="antialiased selection:bg-royal-500 selection:text-white bg-glassy-navy">
+
+<!-- ═══════════════════════════════════════ HEADER ═══ -->
+<header class="fixed w-full top-0 z-50 bg-navy-950/90 backdrop-blur-xl shadow-lg border-b border-white/5">
+  <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+    <a href="index.html" class="text-lg sm:text-xl md:text-2xl font-bold text-white tracking-tight flex items-center gap-3 hover:opacity-80 transition">
+      <img src="public/Fahad_Naveed_Picture_PhotoGrid.png" alt="Fahad"
+           class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover object-top border-2 border-royal-500 shadow-md">
+      Fahad Naveed
+    </a>
+    <div class="hidden md:flex space-x-6 lg:space-x-8 items-center">
+      <a href="index.html#about"      class="text-slate-300 hover:text-white text-sm font-medium transition hover:scale-105">About</a>
+      <a href="index.html#experience" class="text-slate-300 hover:text-white text-sm font-medium transition hover:scale-105">Experience</a>
+      <a href="index.html#education"  class="text-slate-300 hover:text-white text-sm font-medium transition hover:scale-105">Education</a>
+      <a href="index.html#skills"     class="text-slate-300 hover:text-white text-sm font-medium transition hover:scale-105">Skills</a>
+      <a href="articles.html"         class="text-white font-bold text-sm border-b-2 border-royal-500 pb-1">Articles</a>
+      <a href="index.html#contact"    class="px-5 py-2 bg-royal-500 text-white text-sm font-semibold rounded-full hover:bg-royal-600 transition shadow-lg shadow-royal-500/30">Let's Connect</a>
+    </div>
+    <button id="mobile-menu-btn" class="md:hidden p-2 text-white bg-white/5 rounded-lg border border-white/10">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </nav>
+  <div id="mobile-menu" class="md:hidden hidden bg-navy-900 border-t border-white/10 absolute w-full z-40 shadow-2xl">
+    <a href="index.html#about"      class="block px-6 py-4 text-slate-300 hover:bg-white/5 border-b border-white/5">About</a>
+    <a href="index.html#experience" class="block px-6 py-4 text-slate-300 hover:bg-white/5 border-b border-white/5">Experience</a>
+    <a href="index.html#education"  class="block px-6 py-4 text-slate-300 hover:bg-white/5 border-b border-white/5">Education</a>
+    <a href="index.html#skills"     class="block px-6 py-4 text-slate-300 hover:bg-white/5 border-b border-white/5">Skills</a>
+    <a href="articles.html"         class="block px-6 py-4 text-royal-400 font-bold hover:bg-white/5 border-b border-white/5 bg-white/5">Articles</a>
+    <a href="index.html#contact"    class="block px-6 py-4 text-slate-300 hover:bg-white/5">Contact Me</a>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════ MAIN ═══ -->
+<main class="container mx-auto px-4 sm:px-6 pt-28 sm:pt-36 pb-16 flex-grow">
+
+  <div class="max-w-5xl mx-auto mb-6">
+    <a href="articles.html" class="inline-flex items-center text-sm font-medium text-slate-400 hover:text-white transition">
+      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+      Back to Articles
+    </a>
+  </div>
+
+  <article class="max-w-5xl mx-auto space-y-8">
+
+    <!-- ─────────────────────────────────── HERO ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl">
+      <header class="mb-10 border-b border-white/10 pb-10">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <span class="px-3 py-1 text-xs font-semibold text-rose-300 bg-rose-500/10 rounded-full border border-rose-500/20">Public Health</span>
+          <span class="px-3 py-1 text-xs font-semibold text-purple-300 bg-purple-500/10 rounded-full border border-purple-500/20">Genetics</span>
+          <span class="px-3 py-1 text-xs font-semibold text-amber-300 bg-amber-500/10 rounded-full border border-amber-500/20">Epidemiology</span>
+          <span class="text-sm text-slate-500 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            July 2026
+          </span>
+          <span class="text-sm text-slate-500 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            22 Min Read
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6">
+          60% of Pakistani Marriages Are Between Cousins. Here Is What That Costs the Children.
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-300 leading-relaxed mb-8">
+          A comparative epidemiological analysis of childhood disability and birth defects across countries with and without consanguineous marriage, and what the real numbers reveal about Pakistan's hidden public health burden.
+        </p>
+        <div class="flex items-center gap-4">
+          <img src="public/Fahad_Naveed_Picture_PhotoGrid.png" alt="Fahad Naveed"
+               class="w-14 h-14 rounded-full border-2 border-royal-500 object-cover">
+          <div>
+            <p class="text-white font-semibold text-lg">Fahad Naveed</p>
+            <p class="text-sm text-royal-400">Fintech | CA Finalist | ICAP | Ex-Audit Intern</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- hero stat cards -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        <div class="bg-navy-900/60 border border-rose-500/20 rounded-2xl p-5 text-center hover:-translate-y-1 transition duration-300">
+          <span class="text-4xl font-extrabold text-rose-400 block mb-2">60-70%</span>
+          <span class="text-slate-400 text-sm leading-snug">of all Pakistani marriages are between blood relatives</span>
+        </div>
+        <div class="bg-navy-900/60 border border-royal-500/20 rounded-2xl p-5 text-center hover:-translate-y-1 transition duration-300">
+          <span class="text-4xl font-extrabold text-royal-400 block mb-2">2x</span>
+          <span class="text-slate-400 text-sm leading-snug">the birth defect risk for first-cousin children vs. unrelated parents</span>
+        </div>
+        <div class="bg-navy-900/60 border border-purple-500/20 rounded-2xl p-5 text-center hover:-translate-y-1 transition duration-300">
+          <span class="text-4xl font-extrabold text-purple-400 block mb-2">5-6M</span>
+          <span class="text-slate-400 text-sm leading-snug">children in Pakistan affected by thalassemia, fuelled by cousin marriage</span>
+        </div>
+        <div class="bg-navy-900/60 border border-amber-500/20 rounded-2xl p-5 text-center hover:-translate-y-1 transition duration-300">
+          <span class="text-4xl font-extrabold text-amber-400 block mb-2">3.1%</span>
+          <span class="text-slate-400 text-sm leading-snug">Pakistan's official disability figure. The reality is vastly higher.</span>
+        </div>
+      </div>
+
+      <!-- opening text -->
+      <div class="prose-body text-slate-300 text-lg leading-relaxed">
+        <p class="text-xl text-slate-200 font-medium">This is not a comfortable article to write. And it is not a comfortable one to read. But it is a necessary one.</p>
+        <p>Between 10% and 20% of all people on Earth live in communities where marrying a close relative is not just accepted but actively encouraged. In Pakistan, roughly 60% to 70% of all marriages take place between blood relatives. Of those, first-cousin marriages alone account for exactly half. This makes Pakistan the country with the highest rate of consanguineous marriage on the planet.</p>
+        <p>The consequences for children born from these unions are measurable, documented, and severe. Yet the practice continues, the data goes uncollected, and the children carry the weight of choices made before they were born.</p>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────── SECTION 1: GLOBAL SCALE ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl reveal">
+      <div class="eyebrow mb-3">The Global Picture</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-6">A Practice More Common Than Most People Know</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div class="prose-body text-slate-300 leading-relaxed">
+          <p>Consanguineous marriage is structurally defined as a reproductive union between individuals who are closely related by blood, typically second cousins or closer. It is a deeply entrenched demographic and cultural phenomenon that shapes the genetic, epidemiological, and socioeconomic structure of numerous global populations.</p>
+          <p>While global shifts, increasing education, and market-driven economies have led to a rapid decline in consanguinity across Western and East Asian regions, the practice remains highly prevalent and culturally resilient in the Middle East, North Africa, and South Asia.</p>
+          <p>From a public health perspective, this commands serious scientific attention because of its established correlation with childhood disability, congenital anomalies, early infant mortality, and rare recessive genetic disorders.</p>
+        </div>
+        <!-- global stats column -->
+        <div class="space-y-4">
+          <div class="bg-navy-900/50 border border-white/10 rounded-2xl p-5">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-slate-400 text-sm">Global population in consanguineous communities</span>
+              <span class="text-white font-bold">10-20%</span>
+            </div>
+            <div class="cmp-bar"><div class="cmp-bar-fill bg-royal-500" style="width:20%"></div></div>
+          </div>
+          <div class="bg-navy-900/50 border border-white/10 rounded-2xl p-5">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-slate-400 text-sm">Pakistan: marriages between relatives</span>
+              <span class="text-rose-400 font-bold">60-70%</span>
+            </div>
+            <div class="cmp-bar"><div class="cmp-bar-fill bg-rose-500" style="width:65%"></div></div>
+          </div>
+          <div class="bg-navy-900/50 border border-white/10 rounded-2xl p-5">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-slate-400 text-sm">Pakistan: specifically first-cousin marriages</span>
+              <span class="text-amber-400 font-bold">50%</span>
+            </div>
+            <div class="cmp-bar"><div class="cmp-bar-fill bg-amber-500" style="width:50%"></div></div>
+          </div>
+          <div class="bg-navy-900/50 border border-white/10 rounded-2xl p-5">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-slate-400 text-sm">Middle East / North Africa average</span>
+              <span class="text-purple-400 font-bold">~35-45%</span>
+            </div>
+            <div class="cmp-bar"><div class="cmp-bar-fill bg-purple-500" style="width:40%"></div></div>
+          </div>
+          <div class="bg-navy-900/50 border border-white/10 rounded-2xl p-5">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-slate-400 text-sm">United States / China / South Korea</span>
+              <span class="text-emerald-400 font-bold">Near 0%</span>
+            </div>
+            <div class="cmp-bar"><div class="cmp-bar-fill bg-emerald-500" style="width:1%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────── SECTION 2: GENETICS ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl reveal">
+      <div class="eyebrow mb-3">The Biology</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">How Shared DNA Becomes a Health Risk</h2>
+      <p class="text-slate-300 text-lg leading-relaxed mb-10">
+        When two people who share a common ancestor have children, those children are more likely to inherit two identical copies of the same harmful gene variant, one from each parent. This is the core biological mechanism through which a genetic condition that would normally stay dormant gets expressed and causes real disease.
+      </p>
+
+      <!-- punnett square + explanation -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12 items-start">
+        <div>
+          <h3 class="text-lg font-bold text-white mb-3">How Recessive Genes Work</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Consider a single harmful recessive gene, shown as "a." A healthy carrier has one normal copy (A) and one harmful copy (a). When two carriers have a child together, each child faces a 25% chance of inheriting both harmful copies (aa) and expressing the disease. In first-cousin marriages, the probability that both parents are carriers of the same gene is dramatically elevated, because they inherited DNA from the same grandparents.
+          </p>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            The human genome has approximately 3,500 distinct recessive conditions. On average, every person carries about 12 silent mutations linked to these conditions. In a couple of unrelated people, the chance both carry a mutation in the same gene is very small. In a first-cousin couple, that chance is multiplied fourfold compared to second cousins.
+          </p>
+        </div>
+
+        <!-- Punnett Square Visual -->
+        <div class="bg-navy-900/50 rounded-2xl p-6 border border-white/10">
+          <p class="text-xs text-slate-500 mb-5 text-center font-medium uppercase tracking-widest">Carrier x Carrier Cross — Aa x Aa</p>
+          <div class="grid grid-cols-3 gap-3">
+            <div></div>
+            <div class="text-center text-royal-400 font-extrabold text-xl">A</div>
+            <div class="text-center text-rose-400 font-extrabold text-xl">a</div>
+
+            <div class="text-center text-royal-400 font-extrabold text-xl self-center">A</div>
+            <div class="p-cell bg-emerald-500/10 border-emerald-500/20 text-emerald-300">
+              AA <span class="block text-xs font-normal text-emerald-600 mt-0.5">Normal</span>
+            </div>
+            <div class="p-cell bg-amber-500/10 border-amber-500/20 text-amber-300">
+              Aa <span class="block text-xs font-normal text-amber-600 mt-0.5">Carrier</span>
+            </div>
+
+            <div class="text-center text-rose-400 font-extrabold text-xl self-center">a</div>
+            <div class="p-cell bg-amber-500/10 border-amber-500/20 text-amber-300">
+              Aa <span class="block text-xs font-normal text-amber-600 mt-0.5">Carrier</span>
+            </div>
+            <div class="p-cell bg-rose-500/20 border border-rose-500/40 text-rose-300 pulse-cell">
+              aa <span class="block text-xs font-normal text-rose-500 mt-0.5">Affected</span>
+            </div>
+          </div>
+          <div class="mt-5 flex items-center justify-around text-xs text-slate-500">
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 bg-emerald-500 rounded-full"></span> 25% Normal</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 bg-amber-500 rounded-full"></span> 50% Carrier</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 bg-rose-500 rounded-full"></span> 25% Affected</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- inbreeding coefficient -->
+      <div class="bg-royal-500/5 border border-royal-500/20 rounded-2xl p-6 sm:p-8 mb-12">
+        <h3 class="text-base font-bold text-white mb-6">The Inbreeding Coefficient (F): What It Measures</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+          <div>
+            <div class="text-3xl font-extrabold text-slate-500 mb-2">F = 0</div>
+            <div class="text-xs text-slate-400 leading-relaxed">Unrelated parents. No shared ancestral DNA. This is the outbred baseline.</div>
+          </div>
+          <div>
+            <div class="text-3xl font-extrabold text-amber-400 mb-2">F = 0.0156</div>
+            <div class="text-xs text-slate-400 leading-relaxed">Second cousins. Low elevated risk. Fourfold less sharing than first cousins.</div>
+          </div>
+          <div class="border-l border-rose-500/20 pl-6">
+            <div class="text-3xl font-extrabold text-rose-400 mb-2">F = 0.03053</div>
+            <div class="text-xs text-slate-400 leading-relaxed">Average measured in Faisalabad, Pakistan. A figure large enough to drive measurable population-level disease across millions of births.</div>
+          </div>
+        </div>
+        <p class="text-slate-500 text-xs mt-6 leading-relaxed border-t border-white/5 pt-4">Source: Consanguinity, Inbreeding Coefficient, Infant Mortality and Congenital Anomalies Evaluation in the Population of Faisalabad. medRxiv 2026.</p>
+      </div>
+
+      <!-- dot grid risk visualization -->
+      <h3 class="text-xl font-bold text-white mb-2">The 3% to 6% Risk, Visualized</h3>
+      <p class="text-slate-400 text-sm mb-7">Each dot represents 1 in 100 children. Red dots are children born with a congenital anomaly or recessive genetic disorder.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <p class="text-sm font-semibold text-slate-300 mb-4">Unrelated Parents — 3% Risk</p>
+          <div class="dot-grid" id="dot-grid-3"></div>
+          <p class="text-xs text-slate-500 mt-3">3 children in every 100 born with a congenital condition</p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-rose-300 mb-4">First Cousin Parents — 6% Risk</p>
+          <div class="dot-grid" id="dot-grid-6"></div>
+          <p class="text-xs text-slate-500 mt-3">6 children in every 100. Exactly double. Applied across millions of births per year.</p>
+        </div>
+      </div>
+      <div class="mt-7 bg-rose-500/5 border border-rose-500/20 rounded-xl p-5">
+        <p class="text-slate-300 text-sm leading-relaxed">
+          <strong class="text-rose-300">Why the doubling matters at scale:</strong> A 3-percentage-point increase sounds small individually. Pakistan records roughly 5 million births per year. With 60-70% of parents being related, that is approximately 3.5 million consanguineous births annually. A 3-point higher defect rate means around 105,000 additional children born with genetic conditions every single year, compared to a purely outbred population.
+        </p>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────── SECTION 3: WHY IT PERSISTS ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl reveal">
+      <div class="eyebrow mb-3">The Social Context</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Why Do People Continue to Marry Cousins?</h2>
+      <p class="text-slate-300 text-lg leading-relaxed mb-9">Understanding the health risks does not explain why cousin marriage persists. To understand that, we have to look at the economic and social systems that make it not just acceptable, but strategically rational for millions of families.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-navy-900/50 border border-royal-500/20 rounded-2xl p-6">
+          <div class="text-royal-400 mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          </div>
+          <h3 class="text-white font-bold text-lg mb-3">Intensive Kinship: The Family as Safety Net</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">In agrarian and economically vulnerable societies, marrying within the family is a rational survival strategy. It keeps land and inheritance within the household. It creates working partnerships between households. It lowers dowry costs and builds social alliances within clans and castes that offer real protection and mutual support. Studies of communities in Kabirwala, Punjab, confirm this pattern has deep roots.</p>
+        </div>
+        <div class="bg-navy-900/50 border border-slate-600/20 rounded-2xl p-6">
+          <div class="text-slate-400 mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <h3 class="text-white font-bold text-lg mb-3">Extensive Kinship: The State as Safety Net</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">In industrialized societies, formal institutions like banks, insurance, and state welfare replace the family as the primary safety net. People move for work and education, meet partners outside their family circle, and depend on the state rather than relatives. Marriage outside the family fits naturally into this structure, making cousin marriage both unnecessary and socially unusual.</p>
+        </div>
+      </div>
+
+      <blockquote class="p-6 sm:p-8 bg-white/5 border-l-4 border-royal-500 rounded-r-2xl">
+        <p class="text-lg text-slate-200 font-medium leading-snug">The day-to-day economic and social benefits of cousin marriage are real and immediate. The genetic risks are statistical and happen in a minority of families. People weigh what they can see and feel against what feels distant and abstract. This is not a failure of morality. It is a predictable response to economic constraints.</p>
+      </blockquote>
+    </div>
+
+    <!-- ─────────────────────────────────── SECTION 4: LEGAL FRAMEWORKS ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl reveal">
+      <div class="eyebrow mb-3">The Law</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">What Different Countries Actually Do About It</h2>
+      <p class="text-slate-300 text-lg leading-relaxed mb-10">Legal frameworks shape more than marriage practices. They determine whether governments track health consequences, fund screening programs, and whether communities can discuss risks openly.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Pakistan -->
+        <div class="bg-emerald-500/5 border border-emerald-500/20 rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-white font-bold text-lg">Pakistan</h3>
+            <span class="flag-pill text-emerald-300 bg-emerald-500/10 border-emerald-500/20">Fully Legal</span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">Cousin marriage is entirely legal, culturally encouraged, and completely unrestricted by the state. Health ministries attempt mitigation through premarital genetic counseling, but face severe resource deficits, low genetic literacy, and deep cultural resistance.</p>
+          <div class="bg-navy-900/50 rounded-xl p-4">
+            <span class="text-3xl font-bold text-emerald-400">60-70%</span>
+            <span class="text-slate-500 text-sm block mt-0.5">of all marriages are consanguineous</span>
+          </div>
+        </div>
+
+        <!-- US -->
+        <div class="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-white font-bold text-lg">United States</h3>
+            <span class="flag-pill text-amber-300 bg-amber-500/10 border-amber-500/20">Mixed by State</span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">A highly fragmented legal landscape. Banned in 25 states, restricted in 7, and criminalized with jail time in 8 states, making the US one of the few countries to treat cousin marriage as a criminal offence.</p>
+          <div class="grid grid-cols-4 gap-2">
+            <div class="bg-red-500/20 rounded-xl p-3 text-center">
+              <span class="text-red-400 font-bold text-xl block">25</span>
+              <span class="text-red-600 text-xs">Banned</span>
+            </div>
+            <div class="bg-amber-500/20 rounded-xl p-3 text-center">
+              <span class="text-amber-400 font-bold text-xl block">7</span>
+              <span class="text-amber-600 text-xs">Restricted</span>
+            </div>
+            <div class="bg-rose-900/40 rounded-xl p-3 text-center">
+              <span class="text-rose-300 font-bold text-xl block">8</span>
+              <span class="text-rose-600 text-xs">Criminal</span>
+            </div>
+            <div class="bg-emerald-500/20 rounded-xl p-3 text-center">
+              <span class="text-emerald-400 font-bold text-xl block">18</span>
+              <span class="text-emerald-600 text-xs">Legal</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- China -->
+        <div class="bg-rose-500/5 border border-rose-500/20 rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-white font-bold text-lg">China</h3>
+            <span class="flag-pill text-rose-300 bg-rose-500/10 border-rose-500/20">National Ban</span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">A national ban enforced since the 1980s and 1990s. State documents explicitly cited the prevention of birth defects and intellectual disabilities. The ban has virtually eliminated the practice and fundamentally altered China's genetic health baseline.</p>
+          <div class="bg-navy-900/50 rounded-xl p-4">
+            <span class="text-3xl font-bold text-rose-400">1.97%</span>
+            <span class="text-slate-500 text-sm block mt-0.5">youth disability rate, age 15-24</span>
+          </div>
+        </div>
+
+        <!-- South Korea -->
+        <div class="bg-rose-500/5 border border-rose-500/20 rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-white font-bold text-lg">South Korea</h3>
+            <span class="flag-pill text-rose-300 bg-rose-500/10 border-rose-500/20">National Ban</span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">Firm legal bans rooted in centuries of anti-inbreeding cultural norms, now encoded in civil law. South Korea operates the KNDRS (Korea National Disability Registration System), providing highly accurate epidemiological data unclouded by widespread inbreeding.</p>
+          <div class="bg-navy-900/50 rounded-xl p-4">
+            <span class="text-3xl font-bold text-rose-400">5.48%</span>
+            <span class="text-slate-500 text-sm block mt-0.5">all structural birth defects tracked</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- legal comparison table -->
+      <div class="overflow-x-auto rounded-2xl border border-white/10">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-navy-950/70 text-slate-400 text-xs uppercase tracking-wider">
+              <th class="px-5 py-4 text-left font-semibold">Country</th>
+              <th class="px-5 py-4 text-left font-semibold">Legal Status</th>
+              <th class="px-5 py-4 text-left font-semibold">Rationale / Context</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5">
+            <tr class="hover:bg-white/3 transition">
+              <td class="px-5 py-4 text-white font-medium">Pakistan</td>
+              <td class="px-5 py-4"><span class="flag-pill text-emerald-300 bg-emerald-500/10 border-emerald-500/20">Fully Legal</span></td>
+              <td class="px-5 py-4 text-slate-400">Intensive kinship systems, wealth consolidation, cultural and religious norms.</td>
+            </tr>
+            <tr class="hover:bg-white/3 transition">
+              <td class="px-5 py-4 text-white font-medium">United States</td>
+              <td class="px-5 py-4"><span class="flag-pill text-amber-300 bg-amber-500/10 border-amber-500/20">Fragmented</span></td>
+              <td class="px-5 py-4 text-slate-400">Banned in 25 states; restricted in 7; criminalized in 8; legal in 18 states.</td>
+            </tr>
+            <tr class="hover:bg-white/3 transition">
+              <td class="px-5 py-4 text-white font-medium">China</td>
+              <td class="px-5 py-4"><span class="flag-pill text-rose-300 bg-rose-500/10 border-rose-500/20">National Ban</span></td>
+              <td class="px-5 py-4 text-slate-400">Legal prohibition enforced since the late 20th century, justified on public health grounds.</td>
+            </tr>
+            <tr class="hover:bg-white/3 transition">
+              <td class="px-5 py-4 text-white font-medium">South Korea</td>
+              <td class="px-5 py-4"><span class="flag-pill text-rose-300 bg-rose-500/10 border-rose-500/20">National Ban</span></td>
+              <td class="px-5 py-4 text-slate-400">Rooted in historical anti-inbreeding laws and modern public health civil codes.</td>
+            </tr>
+            <tr class="hover:bg-white/3 transition">
+              <td class="px-5 py-4 text-white font-medium">North Korea / Taiwan</td>
+              <td class="px-5 py-4"><span class="flag-pill text-rose-300 bg-rose-500/10 border-rose-500/20">National Ban</span></td>
+              <td class="px-5 py-4 text-slate-400">Similar prohibitions as South Korea, encoded in civil law.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────── SECTION 5: PAKISTAN DEEP DIVE ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl reveal">
+      <div class="eyebrow mb-3">Pakistan: Case Study in Depth</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Inside the Numbers: Pakistan's Regional Picture</h2>
+      <p class="text-slate-300 text-lg leading-relaxed mb-8">No country in the world has higher rates of cousin marriage than Pakistan. Sub-national data reveals that this is not a rural phenomenon or an urban one. It is woven into the social fabric across every region of the country.</p>
+
+      <!-- regional bar chart -->
+      <div class="bg-navy-900/50 rounded-2xl p-6 border border-white/10 mb-10">
+        <h3 class="text-sm font-semibold text-white mb-6 uppercase tracking-wider">Consanguinity Rates by Region (Pakistan)</h3>
+        <div class="chart-wrap" style="height:320px">
+          <canvas id="regionalChart"></canvas>
+        </div>
+      </div>
+
+      <!-- hospital study callouts -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        <div class="bg-rose-500/5 border border-rose-500/20 rounded-2xl p-6 text-center">
+          <div class="text-4xl font-extrabold text-rose-400 mb-2">72.7%</div>
+          <div class="text-slate-400 text-sm leading-snug">of parents of admitted pediatric patients at a Karachi hospital were consanguineous (hospital-based study)</div>
+        </div>
+        <div class="bg-rose-500/5 border border-rose-500/20 rounded-2xl p-6 text-center">
+          <div class="text-4xl font-extrabold text-rose-300 mb-2">87%</div>
+          <div class="text-slate-400 text-sm leading-snug">of those consanguineous pairs were specifically first cousins, the closest cousin relationship</div>
+        </div>
+        <div class="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-6 text-center">
+          <div class="text-4xl font-extrabold text-amber-400 mb-2">50%</div>
+          <div class="text-slate-400 text-sm leading-snug">of ALL Pakistani marriages are first-cousin unions alone, per PDHS 2017-18</div>
+        </div>
+      </div>
+
+      <!-- health consequences with progress bars -->
+      <h3 class="text-xl font-bold text-white mb-6">The Health Consequences, in Detail</h3>
+      <div class="space-y-4 mb-10">
+
+        <div class="bg-white/3 border border-white/10 rounded-xl p-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+            <div>
+              <h4 class="text-white font-semibold">Stillbirth Rate Differential</h4>
+              <p class="text-slate-500 text-xs">Faisalabad study, 2,366 subjects: consanguineous vs. non-consanguineous</p>
+            </div>
+            <span class="text-2xl font-extrabold text-rose-400 shrink-0">+82.25%</span>
+          </div>
+          <div class="sbar"><div class="sbar-fill bg-gradient-to-r from-rose-800 to-rose-400" style="width:82%"></div></div>
+        </div>
+
+        <div class="bg-white/3 border border-white/10 rounded-xl p-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+            <div>
+              <h4 class="text-white font-semibold">Congenital Anomalies Occurring in Consanguineous Families</h4>
+              <p class="text-slate-500 text-xs">Of ALL observed anomalies across both consanguineous and non-consanguineous groups</p>
+            </div>
+            <span class="text-2xl font-extrabold text-amber-400 shrink-0">59.06%</span>
+          </div>
+          <div class="sbar"><div class="sbar-fill bg-gradient-to-r from-amber-800 to-amber-400" style="width:59%"></div></div>
+        </div>
+
+        <div class="bg-white/3 border border-white/10 rounded-xl p-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+            <div>
+              <h4 class="text-white font-semibold">Prenatal Mortality Differential</h4>
+              <p class="text-slate-500 text-xs">Consanguineous vs. non-consanguineous unions in the same region</p>
+            </div>
+            <span class="text-2xl font-extrabold text-purple-400 shrink-0">+44.94%</span>
+          </div>
+          <div class="sbar"><div class="sbar-fill bg-gradient-to-r from-purple-800 to-purple-400" style="width:45%"></div></div>
+        </div>
+
+        <div class="bg-white/3 border border-white/10 rounded-xl p-5">
+          <h4 class="text-white font-semibold mb-4">Child Mortality in Carrier Families vs. National Average</h4>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-navy-900/60 rounded-xl p-4 text-center border border-rose-500/20">
+              <div class="text-3xl font-bold text-rose-400 mb-1">480</div>
+              <div class="text-xs text-slate-500">deaths per 1,000 live births in carrier genetic families</div>
+            </div>
+            <div class="bg-navy-900/60 rounded-xl p-4 text-center border border-emerald-500/20">
+              <div class="text-3xl font-bold text-emerald-400 mb-1">62</div>
+              <div class="text-xs text-slate-500">deaths per 1,000 live births, Pakistan national average</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- specific conditions grid -->
+      <h3 class="text-xl font-bold text-white mb-5">Specific Conditions Most Driven by Consanguinity</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+        <div class="bg-navy-900/50 border border-white/10 rounded-xl p-4">
+          <div class="text-rose-400 font-bold mb-1">Anencephaly</div>
+          <div class="text-amber-400 font-semibold text-lg mb-1">12.9%</div>
+          <div class="text-slate-500 text-xs">of all congenital anomalies observed in consanguineous families</div>
+        </div>
+        <div class="bg-navy-900/50 border border-white/10 rounded-xl p-4">
+          <div class="text-rose-400 font-bold mb-1">Spina Bifida</div>
+          <div class="text-amber-400 font-semibold text-lg mb-1">9.7%</div>
+          <div class="text-slate-500 text-xs">of all congenital anomalies observed in consanguineous families</div>
+        </div>
+        <div class="bg-navy-900/50 border border-white/10 rounded-xl p-4">
+          <div class="text-rose-400 font-bold mb-1">Microcephaly</div>
+          <div class="text-amber-400 font-semibold text-lg mb-1">6.5%</div>
+          <div class="text-slate-500 text-xs">of all congenital anomalies observed in consanguineous families</div>
+        </div>
+        <div class="bg-navy-900/50 border border-white/10 rounded-xl p-4">
+          <div class="text-purple-400 font-bold mb-1">Thalassemia</div>
+          <div class="text-amber-400 font-semibold text-lg mb-1">5,000/yr</div>
+          <div class="text-slate-500 text-xs">new homozygous births annually. 5 to 6 million total affected in Pakistan.</div>
+        </div>
+        <div class="bg-navy-900/50 border border-white/10 rounded-xl p-4">
+          <div class="text-purple-400 font-bold mb-1">Intellectual Disability</div>
+          <div class="text-amber-400 font-semibold text-lg mb-1">65/1,000</div>
+          <div class="text-slate-500 text-xs">estimated mild intellectual disability prevalence in children</div>
+        </div>
+        <div class="bg-navy-900/50 border border-white/10 rounded-xl p-4">
+          <div class="text-purple-400 font-bold mb-1">Congenital Deafness</div>
+          <div class="text-amber-400 font-semibold text-lg mb-1">Primary Driver</div>
+          <div class="text-slate-500 text-xs">Consanguinity is a primary documented cause of congenital deafness in Punjab</div>
+        </div>
+      </div>
+
+      <!-- thalassemia highlight -->
+      <div class="bg-gradient-to-r from-purple-500/10 to-rose-500/10 border border-purple-500/20 rounded-2xl p-6 sm:p-8">
+        <h3 class="text-white font-bold text-lg mb-3">The Thalassemia Burden: 5 to 6 Million Affected</h3>
+        <p class="text-slate-300 text-sm leading-relaxed mb-4">Pakistan faces a systemic burden of hemoglobin disorders. An estimated 5 to 6 million children live with thalassemia or its severe symptoms. Approximately 5,000 homozygous thalassemia children are born annually, a direct biological consequence of the 6% of the national population carrying the recessive gene, relentlessly amplified through cousin marriages.</p>
+        <p class="text-slate-400 text-xs">Source: Exploring the role of consanguinity in thalassemia prevalence in Pakistan, PMC 2024.</p>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────── SECTION 6: BORN IN BRADFORD ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl reveal">
+      <div class="eyebrow mb-3">The Definitive Study</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Born in Bradford: The Study That Separated Genetics from Poverty</h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div class="prose-body text-slate-300 leading-relaxed">
+          <p>One of the most scientifically important studies on consanguinity comes not from Pakistan but from Bradford, UK. The Born in Bradford (BiB) study tracked 13,500 babies born at Bradford Royal Infirmary between 2007 and 2011. Bradford has a large Pakistani-origin community, many of whom maintain the tradition of cousin marriage despite living in the UK for one or two generations.</p>
+          <p>This setting was scientifically invaluable precisely because it controlled for the environmental factors that usually accompany high consanguinity in Pakistan: poverty, poor sanitation, inadequate healthcare, and malnutrition. Pakistani-origin families in Bradford had high rates of cousin marriage, but they lived within the NHS and the UK welfare system.</p>
+          <p>The genetic variable was present. The environmental confounders were not. When researchers tested whether poverty explained the higher defect rates, they found it did not. Two-thirds of the Bradford cohort lived in the UK's most deprived areas, yet socioeconomic deprivation did not statistically explain the surge. Cousin marriage was the mathematically dominant factor.</p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="bg-gradient-to-br from-royal-500/10 to-transparent border border-royal-500/20 rounded-2xl p-6">
+            <div class="text-slate-500 text-xs mb-2 uppercase tracking-wider">Study Scale</div>
+            <div class="text-4xl font-extrabold text-white mb-1">13,500</div>
+            <div class="text-slate-400 text-sm">babies tracked from 2007 to 2011, Bradford Royal Infirmary</div>
+          </div>
+          <div class="bg-gradient-to-br from-rose-500/10 to-transparent border border-rose-500/20 rounded-2xl p-6">
+            <div class="text-slate-500 text-xs mb-2 uppercase tracking-wider">Key Finding 1</div>
+            <div class="text-4xl font-extrabold text-rose-400 mb-1">6% vs 3%</div>
+            <div class="text-slate-400 text-sm">Birth defect rate for first-cousin children exactly doubled the general UK population baseline</div>
+          </div>
+          <div class="bg-gradient-to-br from-amber-500/10 to-transparent border border-amber-500/20 rounded-2xl p-6">
+            <div class="text-slate-500 text-xs mb-2 uppercase tracking-wider">Key Finding 2</div>
+            <div class="text-4xl font-extrabold text-amber-400 mb-1">31%</div>
+            <div class="text-slate-400 text-sm">of ALL birth defects in Pakistani-origin babies in Bradford were attributable to cousin marriage</div>
+          </div>
+          <div class="bg-gradient-to-br from-emerald-500/10 to-transparent border border-emerald-500/20 rounded-2xl p-6">
+            <div class="text-slate-500 text-xs mb-2 uppercase tracking-wider">Key Finding 3</div>
+            <div class="text-slate-200 font-bold text-lg mb-1">Poverty Did Not Explain It</div>
+            <div class="text-slate-400 text-sm">Socioeconomic deprivation, maternal smoking, and alcohol use were all ruled out as primary causes. Genetics dominated.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────── SECTION 7: INTERNATIONAL COMPARISON ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl reveal">
+      <div class="eyebrow mb-3">International Comparison</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">The Numbers Side by Side</h2>
+      <p class="text-slate-300 leading-relaxed mb-10">By putting permissive and prohibitive jurisdictions directly next to each other, the epidemiological impact of consanguinity becomes starkly visible.</p>
+
+      <!-- anomaly attribution doughnut + bar side by side -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+        <div class="bg-navy-900/50 rounded-2xl p-6 border border-white/10">
+          <h3 class="text-sm font-semibold text-white mb-5 uppercase tracking-wider">Birth Defect Attribution in Pakistan (Faisalabad Study)</h3>
+          <div class="chart-wrap" style="height:220px">
+            <canvas id="attributionChart"></canvas>
+          </div>
+          <p class="text-slate-500 text-xs mt-4 leading-relaxed">59.06% of all observed congenital anomalies occurred in children of consanguineous unions, even though non-consanguineous families were also part of the sample.</p>
+        </div>
+
+        <div class="bg-navy-900/50 rounded-2xl p-6 border border-white/10">
+          <h3 class="text-sm font-semibold text-white mb-5 uppercase tracking-wider">Reported Disability Rate by Country (%)</h3>
+          <div class="chart-wrap" style="height:220px">
+            <canvas id="internationalChart"></canvas>
+          </div>
+          <p class="text-slate-500 text-xs mt-4 leading-relaxed">Note: These figures use different measurement methodologies. Pakistan's 3.1% is widely considered a severe undercount. Direct comparison requires significant methodological adjustment.</p>
+        </div>
+      </div>
+
+      <!-- country detail cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-navy-900/40 border border-white/10 rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-white font-bold">United States</h3>
+            <span class="text-xs text-royal-400 font-semibold">Negligible Consanguinity</span>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Major anomalies at birth (CDC, 2023)</span><span class="text-royal-400 font-semibold">0.33%</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Developmental disabilities (ages 3-17)</span><span class="text-royal-400 font-semibold">8.56%</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Autism spectrum disorder</span><span class="text-royal-400 font-semibold">3.05%</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Intellectual disability</span><span class="text-royal-400 font-semibold">1.65%</span></div>
+          </div>
+          <p class="text-slate-600 text-xs mt-4">Higher US rates driven by advanced diagnostics, premature infant survival, and older maternal age. Not inbreeding.</p>
+        </div>
+
+        <div class="bg-navy-900/40 border border-white/10 rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-white font-bold">China</h3>
+            <span class="text-xs text-rose-400 font-semibold">Nationally Banned</span>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Youth disability (ages 15-24)</span><span class="text-purple-400 font-semibold">1.97%</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Intellectual disability (youth)</span><span class="text-purple-400 font-semibold">0.84%</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Children with Disability Cards</span><span class="text-purple-400 font-semibold">1.22M</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Poverty multiplier for disability</span><span class="text-purple-400 font-semibold">3.84x</span></div>
+          </div>
+          <p class="text-slate-600 text-xs mt-4">Disability driven by poverty gradients and environmental factors. No consanguinity component. 4-stage birth defect prevention system in place.</p>
+        </div>
+
+        <div class="bg-navy-900/40 border border-white/10 rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-white font-bold">South Korea</h3>
+            <span class="text-xs text-rose-400 font-semibold">Nationally Banned</span>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-slate-400">All structural birth defects (2009-10)</span><span class="text-amber-400 font-semibold">5.48%</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Circulatory system defects</span><span class="text-amber-400 font-semibold">1.81%</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Registered disabled population</span><span class="text-amber-400 font-semibold">5.1%</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Mortality rate, disabled children 1-9</span><span class="text-amber-400 font-semibold">580/100k</span></div>
+          </div>
+          <p class="text-slate-600 text-xs mt-4">Korea's higher anomaly rate reflects comprehensive tracking of minor defects. KNDRS provides the most accurate disability data in the region.</p>
+        </div>
+
+        <div class="bg-navy-900/40 border border-rose-500/20 rounded-2xl p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-white font-bold">Pakistan</h3>
+            <span class="text-xs text-emerald-400 font-semibold">No Restrictions</span>
+          </div>
+          <div class="space-y-3">
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Official census disability rate (2023)</span><span class="text-rose-400 font-semibold">3.1%</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">WHO global disability estimate</span><span class="text-rose-400 font-semibold">~15%</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Thalassemia gene carriers (national)</span><span class="text-rose-400 font-semibold">6%</span></div>
+            <div class="flex justify-between text-sm"><span class="text-slate-400">Inbreeding coefficient, Faisalabad</span><span class="text-rose-400 font-semibold">0.03053</span></div>
+          </div>
+          <p class="text-rose-500/70 text-xs mt-4">Pakistan's 3.1% is almost certainly a massive undercount driven by cultural stigma, outdated data tools, and binary survey methodology.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────── SECTION 8: CONFOUNDING VARIABLES ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl reveal">
+      <div class="eyebrow mb-3">Other Factors</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">What Makes Things Better or Worse</h2>
+      <p class="text-slate-300 text-lg leading-relaxed mb-9">Consanguinity does not work alone. Several other factors amplify or reduce its effects on child health, and understanding them is essential for designing realistic responses.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white/3 border-l-4 border-amber-500 rounded-r-2xl p-6">
+          <h3 class="text-white font-bold mb-3">Poverty, Nutrition and Maternal Age</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-3">In Pakistan, genetic risks collide with widespread poverty. Over 40% of children experience multidimensional poverty. Poor maternal nutrition amplifies the risk of neural tube defects like anencephaly and spina bifida, which are partly preventable through folic acid supplementation. The US, China, and South Korea mandate food fortification. Pakistan does not have a comparable national program.</p>
+          <p class="text-slate-400 text-sm leading-relaxed">Maternal age also matters differently across contexts. Western countries see more chromosomal disorders like Down syndrome from older mothers. Pakistan's disability burden is skewed toward inherited recessive conditions because mothers are younger, not toward the chromosomal aneuploidies tied to aging eggs.</p>
+        </div>
+
+        <div class="bg-white/3 border-l-4 border-royal-500 rounded-r-2xl p-6">
+          <h3 class="text-white font-bold mb-3">Newborn Screening and Prenatal Diagnosis</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-3">The US, China, and South Korea run newborn screening programs that routinely test babies for dozens of metabolic and genetic conditions. Early detection prevents anomalies from progressing into lifelong disabilities. Children with congenital hypothyroidism, identified immediately after birth, can live completely normal lives. Without early detection, the same condition causes severe intellectual disability.</p>
+          <p class="text-slate-400 text-sm leading-relaxed">Pakistan does not have a formal national newborn screening program. Research shows a gap of 2.9 to 4.1 years between the time parents first notice signs of intellectual disability in their child and the time they actually seek medical care, meaning children miss rehabilitation during their most critical years of brain development.</p>
+        </div>
+      </div>
+
+      <div class="bg-navy-900/50 border border-white/10 rounded-2xl p-6">
+        <h3 class="text-white font-bold mb-4">The Cultural Barrier to Genetic Counseling</h3>
+        <p class="text-slate-300 text-sm leading-relaxed mb-4">In communities where cousin marriage is the norm, telling people the practice is risky feels like an attack on their family, their religion, and their identity. Focus group research among Pakistani-origin communities in Luton, UK, found significant resistance to medical advice on this topic. Participants did not dismiss the evidence, but they asked for information that acknowledged their community's values and framing.</p>
+        <p class="text-slate-300 text-sm leading-relaxed">This tells us that public health messages must be delivered with cultural intelligence, not just clinical authority. Telling people their traditions are harmful is not an effective health intervention. Giving them tools to protect their children within their own value framework is.</p>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────── SECTION 9: DATA PARADOX ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl reveal">
+      <div class="eyebrow mb-3">The Data Paradox</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Why Pakistan's Official Numbers Tell the Wrong Story</h2>
+
+      <div class="bg-rose-500/5 border border-rose-500/20 rounded-2xl p-6 sm:p-8 mb-8">
+        <p class="text-xl text-slate-200 font-medium leading-relaxed">Pakistan's official 2023 Census reported a disability prevalence of 3.10%. The United States reports 8.56% for developmental disabilities in children. This seems impossible given everything we know about consanguinity, poverty, and poor healthcare in Pakistan. How can a country with such serious health problems report lower disability than the United States?</p>
+      </div>
+
+      <p class="text-slate-300 leading-relaxed mb-8">The answer is that Pakistan's figure is almost certainly a massive undercount. The paradox is entirely an artifact of how disability is measured, who gets counted, and who is allowed to be visible.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div class="bg-white/3 border border-white/10 rounded-2xl p-6">
+          <h3 class="text-white font-bold mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+            Pakistan's Method: Binary Yes/No
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">Historical census data asked simple yes-or-no questions using outdated terminology. "Are you blind? Crippled? Mentally retarded?" This only captures the most severe, physically obvious disabilities. Mild autism, learning difficulties, moderate physical impairments, and hundreds of other conditions simply do not exist in the official data.</p>
+          <div class="bg-rose-500/10 rounded-xl p-3 text-center">
+            <span class="text-rose-400 font-bold text-2xl">3.1%</span>
+            <span class="text-rose-600 text-sm block">Result: a massive, systematic undercount</span>
+          </div>
+        </div>
+
+        <div class="bg-white/3 border border-white/10 rounded-2xl p-6">
+          <h3 class="text-white font-bold mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            WHO Method: Functional Difficulty Scale
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">The Washington Group Short Set (WG-SS) does not ask if you "are disabled." It asks: do you have difficulty seeing? Difficulty hearing? Difficulty concentrating? Answers are measured on a gradient from no difficulty to cannot do at all. This captures vastly more of the population living with functional limitations.</p>
+          <div class="bg-emerald-500/10 rounded-xl p-3 text-center">
+            <span class="text-emerald-400 font-bold text-2xl">~15%</span>
+            <span class="text-emerald-600 text-sm block">WHO global disability estimate for comparison</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-bold text-white mb-5">Who Gets Hidden, and Why</h3>
+      <div class="space-y-4">
+        <div class="bg-white/3 border-l-4 border-rose-500 rounded-r-2xl p-5">
+          <h4 class="text-white font-semibold mb-2">The Hidden Child</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">In traditional societies built on intensive kinship, disability carries profound social stigma. A child born with a visible defect or intellectual disability may be seen as a source of family shame. Families may keep such children out of sight when census workers arrive. The child may never be registered with any medical or social service.</p>
+        </div>
+        <div class="bg-white/3 border-l-4 border-purple-500 rounded-r-2xl p-5">
+          <h4 class="text-white font-semibold mb-2">The Double Discrimination of Girls</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">This is especially severe for female children. In communities where marriage is the primary pathway for women, having a disabled daughter can be seen as making her unmarriageable. Families have a strong incentive to conceal a daughter's disability entirely. She never gets counted. The effect is especially acute because girls and women are already underrepresented in health data across South Asia.</p>
+        </div>
+        <div class="bg-white/3 border-l-4 border-amber-500 rounded-r-2xl p-5">
+          <h4 class="text-white font-semibold mb-2">The Delayed Diagnosis</h4>
+          <p class="text-slate-400 text-sm leading-relaxed">Research shows a gap of 2.9 to 4.1 years between the time parents first notice signs of intellectual disability and the time they seek medical care. This means many cases are never formally diagnosed at all, let alone entered into any official registry, let alone counted in a census.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────── SECTION 10: WHAT NEEDS TO CHANGE ─── -->
+    <div class="bg-gradient-to-br from-navy-800 to-navy-900 border border-white/10 rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl reveal">
+      <div class="eyebrow mb-3">The Way Forward</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">What Needs to Change</h2>
+      <p class="text-slate-300 text-lg leading-relaxed mb-10">The path forward does not require prohibition alone. The evidence from permissive jurisdictions suggests that legal bans are not the primary lever in deeply consanguineous societies. What is needed is a combination of structural healthcare reform, better data collection, and culturally intelligent communication.</p>
+
+      <ul class="space-y-8">
+        <li class="flex items-start gap-5">
+          <div class="mt-1 bg-royal-500/20 p-3 rounded-xl text-royal-400 shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          </div>
+          <div>
+            <strong class="text-white block text-lg mb-2">Scale Up Genetic Counseling and Prenatal Screening</strong>
+            <span class="text-slate-400 block leading-relaxed text-sm">Premarital and prenatal genetic screening programs need to be genuinely accessible in rural and semi-urban areas. Couples need to know their carrier status before they have children, not after. This requires trained genetic counselors, subsidized testing, and healthcare centers equipped to refer patients appropriately.</span>
+          </div>
+        </li>
+        <li class="flex items-start gap-5">
+          <div class="mt-1 bg-rose-500/20 p-3 rounded-xl text-rose-400 shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <div>
+            <strong class="text-white block text-lg mb-2">Establish a National Newborn Screening Program</strong>
+            <span class="text-slate-400 block leading-relaxed text-sm">Pakistan does not have a formal national newborn screening program. China, South Korea, and the US screen every newborn for dozens of metabolic and genetic conditions. Early detection of treatable conditions prevents permanent disability. This is not a luxury. It is a basic healthcare infrastructure requirement.</span>
+          </div>
+        </li>
+        <li class="flex items-start gap-5">
+          <div class="mt-1 bg-purple-500/20 p-3 rounded-xl text-purple-400 shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div>
+            <strong class="text-white block text-lg mb-2">Adopt WHO-Standard Disability Measurement</strong>
+            <span class="text-slate-400 block leading-relaxed text-sm">Pakistan needs to fully adopt the Washington Group Short Set on Functioning across all national surveys and the census. Without accurate data, there can be no accurate policy. The current 3.1% figure makes the problem invisible to policymakers. That invisibility has a cost measured in children's lives.</span>
+          </div>
+        </li>
+        <li class="flex items-start gap-5">
+          <div class="mt-1 bg-amber-500/20 p-3 rounded-xl text-amber-400 shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          </div>
+          <div>
+            <strong class="text-white block text-lg mb-2">Deliver Culturally Intelligent Health Communication</strong>
+            <span class="text-slate-400 block leading-relaxed text-sm">Focus group research shows Pakistani communities do not dismiss genetic risk evidence. They reject the way it is communicated when it feels like an attack on their identity. Public health messaging must be designed with community leaders, religious scholars, and families, not against them. Telling people their traditions are harmful is not a health intervention. Giving them tools to protect their children within their own value framework is.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ─────────────────────────────────── CONCLUSION ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl reveal">
+      <div class="eyebrow mb-3">Conclusion</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-6">The Evidence Is Clear. The Silence Has a Price.</h2>
+
+      <div class="prose-body text-slate-300 text-lg leading-relaxed">
+        <p>The comparative epidemiology across these jurisdictions reveals patterns that are hard to explain in any other way than through the biological effects of genetic homozygosity. Children born to first cousins face roughly double the baseline risk of congenital anomalies. Applied across a country of 240 million people where the majority of marriages are between cousins, that doubling generates a public health burden that is vast and persistent.</p>
+        <p>The Born in Bradford study provided the most rigorous evidence: even with access to the UK's healthcare system, good nutrition, and no extreme poverty, Pakistani-origin children born to cousin parents still showed double the birth defect rate. The genetics were not cancelled out by better living conditions.</p>
+        <p>Countries that have banned cousin marriage do not show the same pattern of recessive genetic disease at a population level. Their disability burdens exist but are driven by entirely different factors.</p>
+
+        <blockquote class="my-10 p-6 sm:p-8 bg-white/5 border-l-4 border-rose-500 rounded-r-2xl">
+          <p class="text-lg sm:text-xl text-slate-200 font-semibold leading-snug">Pakistan's official 3.10% disability figure does not reflect reality. It reflects the limits of who gets counted, who is allowed to be visible, and which suffering is socially permitted to exist.</p>
+        </blockquote>
+
+        <p>The difference in childhood disability rates between permissive and restricted jurisdictions is not just a law-and-genetics story. It is a story about economics, cultural values, medical infrastructure, and the willingness to honestly measure hard problems.</p>
+        <p>The children born into these circumstances did not choose the genetic odds they were given. The adults around them, and the systems those adults build, determine whether those odds are acknowledged, mitigated, or silently passed on to the next generation.</p>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────── SOURCES ─── -->
+    <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-2xl reveal">
+      <div class="eyebrow mb-4">Research Basis</div>
+      <h3 class="text-base font-bold text-white mb-4">Key Sources and Data</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+        <a href="https://www.medrxiv.org/content/10.64898/2026.02.01.26345314v1.full-text" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">Faisalabad Consanguinity and Infant Mortality Study (medRxiv, 2026)</a>
+        <a href="https://dhsprogram.com/pubs/pdf/FR354/FR354.pdf" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">Pakistan Demographic and Health Survey 2017-18 (PDHS)</a>
+        <a href="https://www.theguardian.com/science/2013/jul/04/marriage-first-cousins-birth-defects" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">Born in Bradford Study (The Guardian, 2013)</a>
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12369746/" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">Thalassemia and Consanguinity in Pakistan (PMC)</a>
+        <a href="https://www.cdc.gov/nchs/products/databriefs/db473.htm" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">US Developmental Disabilities in Children 3-17 (CDC)</a>
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12939100/" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">US Congenital Anomaly Trends 2016-2023 (PMC)</a>
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10482564/" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">Korea National Disability Registration System (PMC)</a>
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4802851/" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">Increased Prevalence of Birth Defects in Korea (PMC)</a>
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6483232/" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">Poverty and Youth Disability in China (PMC)</a>
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4795817/" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">Community Management of Intellectual Disabilities in Pakistan (PMC)</a>
+        <a href="https://gallup.com.pk/post/38294" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">Pakistan 7th Population Census Disability Data (Gallup Pakistan)</a>
+        <a href="https://www.medrxiv.org/content/10.1101/2024.04.03.24305256v1.full-text" target="_blank" class="text-xs text-royal-400 hover:text-royal-300 underline underline-offset-2 truncate">Genes and Health: Recessive Effects in British Pakistanis (medRxiv)</a>
+      </div>
+    </div>
+
+  </article>
+</main>
+
+<!-- ═══════════════════════════════════════ FOOTER ═══ -->
+<footer class="pb-10 pt-10 mt-auto border-t border-white/10">
+  <div class="container mx-auto px-4 sm:px-6 text-center">
+    <div class="flex justify-center gap-6 mb-8">
+      <a href="mailto:fahad.naveedca@gmail.com" class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition shadow-lg backdrop-blur-sm">
+        <span class="sr-only">Email</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      </a>
+      <a href="https://wa.me/923442607172" target="_blank" class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition shadow-lg backdrop-blur-sm">
+        <span class="sr-only">WhatsApp</span>
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/fahaad-ca" target="_blank" class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-royal-600 transition shadow-lg backdrop-blur-sm">
+        <span class="sr-only">LinkedIn</span>
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      </a>
+    </div>
+    <div class="text-slate-500 text-xs sm:text-sm">
+      <p>&copy; <span id="current-year"></span> Fahad Naveed. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════ SCRIPTS ═══ -->
+<script>
+  // ── mobile menu
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('mobile-menu-enter');
+      setTimeout(() => mobileMenu.classList.add('mobile-menu-enter-active'), 10);
+    } else {
+      mobileMenu.classList.remove('mobile-menu-enter-active');
+      setTimeout(() => { mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('mobile-menu-enter'); }, 200);
+    }
+  });
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+
+  // ── dot grids
+  function makeDots(id, n) {
+    const el = document.getElementById(id);
+    for (let i = 0; i < 100; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i < n ? ' affected' : '');
+      el.appendChild(d);
+    }
+  }
+  makeDots('dot-grid-3', 3);
+  makeDots('dot-grid-6', 6);
+
+  // ── scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // ── stat bar animation
+  const barObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.sbar-fill').forEach(f => {
+          const w = f.style.width; f.style.width = '0';
+          requestAnimationFrame(() => requestAnimationFrame(() => f.style.width = w));
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.glass-card, .bg-gradient-to-br').forEach(el => barObs.observe(el));
+
+  // ── Chart.js defaults
+  Chart.defaults.color = '#94a3b8';
+  Chart.defaults.font.family = '"Plus Jakarta Sans", sans-serif';
+
+  // ── Regional chart (horizontal bar)
+  new Chart(document.getElementById('regionalChart'), {
+    type: 'bar',
+    data: {
+      labels: [
+        'Karachi (Pediatric Hospital)',
+        'Punjab Survey (1,521 Women)',
+        'Bhimber, Azad Kashmir',
+        'Sargodha',
+        'Sialkot Region',
+        'Gujrat Region',
+        'Faisalabad (Rural Tehsil)',
+        'Jhelum Region',
+        'Faisalabad (Overall)',
+      ],
+      datasets: [{
+        label: 'Consanguinity Rate (%)',
+        data: [72.7, 61.3, 62.0, 56.72, 56.1, 55.0, 53.85, 50.0, 41.83],
+        backgroundColor: [
+          'rgba(239,68,68,.85)', 'rgba(239,68,68,.75)', 'rgba(239,68,68,.75)',
+          'rgba(251,146,60,.75)', 'rgba(251,146,60,.75)', 'rgba(251,146,60,.7)',
+          'rgba(59,130,246,.7)', 'rgba(59,130,246,.7)', 'rgba(59,130,246,.65)',
+        ],
+        borderRadius: 5, borderSkipped: false,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { beginAtZero: true, max: 100, grid: { color: 'rgba(255,255,255,.04)' }, ticks: { callback: v => v + '%', font: { size: 11 } } },
+        y: { grid: { display: false }, ticks: { font: { size: 11 } } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => '  ' + c.raw + '% consanguinity rate' } }
+      }
+    }
+  });
+
+  // ── Attribution doughnut
+  new Chart(document.getElementById('attributionChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['In Consanguineous Families (59.06%)', 'In Non-Consanguineous Families (40.94%)'],
+      datasets: [{
+        data: [59.06, 40.94],
+        backgroundColor: ['rgba(239,68,68,.82)', 'rgba(59,130,246,.82)'],
+        borderColor: ['rgba(239,68,68,1)', 'rgba(59,130,246,1)'],
+        borderWidth: 2, hoverOffset: 8,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '62%',
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 14 } },
+        tooltip: { callbacks: { label: c => '  ' + c.raw + '% of all anomalies observed' } }
+      }
+    }
+  });
+
+  // ── International comparison bar
+  new Chart(document.getElementById('internationalChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Pakistan\n(Official)', 'China\n(Youth)', 'South Korea\n(Structural)', 'United States\n(Developmental)'],
+      datasets: [{
+        label: 'Disability / Anomaly Rate (%)',
+        data: [3.1, 1.97, 5.48, 8.56],
+        backgroundColor: [
+          'rgba(239,68,68,.8)', 'rgba(139,92,246,.8)',
+          'rgba(245,158,11,.8)', 'rgba(59,130,246,.8)',
+        ],
+        borderRadius: 6, borderSkipped: false,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,.04)' }, ticks: { callback: v => v + '%', font: { size: 11 } } },
+        x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => '  ' + c.raw + '%' } }
+      }
+    }
+  });
+</script>
+</body>
+</html>
